@@ -5,7 +5,10 @@ import java.util.ArrayList;
 public class Usuario {
 	
 //Atributos
-public String oferta;	
+String idUsuario;
+String contrasenia;
+Oferta[] ofetas;
+
 
 //metodos
 public Usuario(){}
