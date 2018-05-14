@@ -1,4 +1,4 @@
-package views;
+package presentacion;
 
 public class GUIUsuario {
 
