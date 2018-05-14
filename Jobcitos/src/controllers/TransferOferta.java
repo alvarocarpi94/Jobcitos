@@ -1,4 +1,4 @@
-package negocio;
+package controllers;
 
 public class TransferOferta {
 
