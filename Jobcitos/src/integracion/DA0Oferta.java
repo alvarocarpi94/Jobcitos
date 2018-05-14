@@ -1,4 +1,4 @@
-package models;
+package integracion;
 
 public class DA0Oferta {
 
