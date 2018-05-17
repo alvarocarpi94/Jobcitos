@@ -33,7 +33,7 @@ public class DatosUsuario implements DAOUsuario{
 	}
 
 	@Override
-	public void actualizarUsuario(String id, TransferUsuario tUsu) {
+	public void actualizarUsuario(TransferUsuario tUsu) {
 		// TODO Auto-generated method stub
 		
 	}
