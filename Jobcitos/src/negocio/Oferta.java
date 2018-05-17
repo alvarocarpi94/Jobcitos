@@ -23,7 +23,7 @@ public class Oferta {
         }else return false;
     }
 
-    public boolean añadirTrabajador(String idTrabajador){
+    public boolean aniadirTrabajador(String idTrabajador){
         if(this.Trabajador != null) return false;
         else{
         	this.Trabajador = idTrabajador;
@@ -35,7 +35,7 @@ public class Oferta {
         this.pagado = true;
     }
 
-    public void añadirCandidato(String trabajador){
+    public void aniadirCandidato(String trabajador){
         this.listaCandidatos.add(trabajador);
     }
 }

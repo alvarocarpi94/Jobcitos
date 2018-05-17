@@ -7,15 +7,37 @@ public class Usuario {
 //Atributos
 String idUsuario;
 String contrasenia;
-Oferta[] ofetas;
+ArrayList<Oferta>  ofertas;
 
 
 //metodos
-public Usuario(){}
+public Usuario(String id, String contra){
+	this.idUsuario=id;
+	this.contrasenia=contra;
+	this.ofertas=new  ArrayList<Oferta>();
+}
 
-void buscarOferta(){}
-void darseBaja(){}
+Oferta buscarOferta(String Nombre){
+	boolean encontrado =false;
+	Oferta oferta=null;
+	int i=0;
+	while(encontrado) { 
+		if(ofertas.get(i).equals(Nombre)) {//.getNombre().equals(nombre);{
+			encontrado =true;
+			oferta = ofertas.get(i); 
+		}
+		i++;
+	}
+	return oferta;
+}
+void darseBaja(){
+	
+	
+}
+
 void crearCuenta(){}
-void EnviarMensaje(){}
+void EnviarMensaje(String msm,String user1, String user2 ){
+	
+}
 
 }
