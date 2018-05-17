@@ -1,9 +1,9 @@
-package basededatos;
+package integracion;
 
 import java.io.IOException;
 
 import excepciones.InconsistenciaDeDatos;
-import oferta.TransferOferta;
+import negocio.TransferOferta;
 
 public interface DAOOferta {
 	

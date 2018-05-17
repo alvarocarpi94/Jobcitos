@@ -1,6 +1,6 @@
-package oferta;
+package negocio;
 
-import util.MyStringUtils;
+import utils.MyStringUtils;
 
 public class TransferOferta {
 
