@@ -4,18 +4,31 @@ import java.util.ArrayList;
 
 public class TransferUsuario {
 	
-	private String IdUsuario;
+	private String email;
 	private String contrasenia;
 	private String nombre;
 	private int mediaOfertante;
 	private int mediaTrabajador;
-	private ArrayList<Oferta> listaOfertas;
+	private ArrayList<String> listaOfertas;
+	private ArrayList<String> listaCandidatos;
 	
-	public TransferUsuario(String Id, String nombre, String contrasenia){
-		this.IdUsuario = Id;
+	public TransferUsuario(String Id, String contrasenia, String nombre, int mediaO,
+			int mediaT, String listaOfertas, String listaCandidatos){
+		this.email = Id;
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
-		listaOfertas = new ArrayList<Oferta>();
+		this.listaOfertas = new ArrayList<String>();
+		if(listaOfertas !=null){
+			for(int i = 0; i < listaOfertas.length(); i++){
+				this.listaOfertas.add(i, listaOfertas.split(";")[i]);
+			}
+		}
+		this.listaCandidatos = new ArrayList<String>();
+		if(listaCandidatos !=null){
+			for(int i = 0; i < listaCandidatos.length(); i++){
+				this.listaCandidatos.add(i, listaCandidatos.split(";")[i]);
+			}
+		}
 	}
 	
 	public String getNombre(){
@@ -23,15 +36,23 @@ public class TransferUsuario {
 	}
 	
 	public String getId() {
-		return IdUsuario;
+		return email;
 	}
 	
 	public String getContrasenia() {
 		return contrasenia;
 	}
 	
-	public Oferta getOferta(int i) {
+	public String getOferta(int i) {
 		return listaOfertas.get(i);
+	}
+	
+	public ArrayList<String> getlistaOfertas() {
+		return listaOfertas;
+	}
+	
+	public ArrayList<String> getlistaCandidatos() {
+		return listaCandidatos;
 	}
 	
 	public int getMediaOfertante() {
@@ -47,14 +68,14 @@ public class TransferUsuario {
 	}
 	
 	public void setId(String id) {
-		IdUsuario = id;
+		email = id;
 	}
 	
 	public void setContrasenia(String contrasenia){
 		this.contrasenia = contrasenia;
 	}
 	
-	public boolean setOferta(Oferta oferta) {
+	public boolean setOferta(String oferta) {
 		int i = 0;
 		boolean ok = false;
 		while(i< listaOfertas.size() && !ok) {
@@ -65,6 +86,18 @@ public class TransferUsuario {
 			i++;
 		} 
 		return ok;
+	}
+	
+	public void setlistaOfertas(ArrayList<String> lista) {
+		for(int i = 0; i < lista.size(); i++){
+			listaOfertas.set(i, lista.get(i));
+		}
+	}
+	
+	public void setlistaCandidatos(ArrayList<String> lista) {
+		for(int i = 0; i < lista.size(); i++){
+			listaCandidatos.set(i, lista.get(i));
+		}
 	}
 	
 	public void setMediaOfertante(int media) {

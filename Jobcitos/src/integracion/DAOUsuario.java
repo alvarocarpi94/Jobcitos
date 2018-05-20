@@ -4,12 +4,12 @@ import negocio.TransferUsuario;
 
 public interface DAOUsuario {
 	
-	public void cargarUsuarios();
-	public void guardarUsuarios();
-	public void insertarUsuario(TransferUsuario tUsu);
-	public void eliminarUsuario(TransferUsuario tUsu);
-	public void actualizarUsuario(TransferUsuario tUsu);
-	public TransferUsuario obtenerUsuario(String id);
+	public TransferUsuario cargarUsuario(TransferUsuario tUsuario);
+	public TransferUsuario guardarUsuario(TransferUsuario tUsuario);
+	public void insertarUsuario(TransferUsuario tUsuario);
+	public void eliminarUsuario(TransferUsuario tUsuario);
+	public void actualizarUsuario(TransferUsuario tUsuario);
+	public TransferUsuario buscarUsuario(String usuario);
 
 
 }
