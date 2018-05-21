@@ -30,7 +30,7 @@ public class DatosUsuario implements DAOUsuario{
 	}
 
 	@Override
-	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {
+	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {//usuario no tiene candidatos
 		String nombreFichero = "Usuarios.txt";
 		File fichero= new File(nombreFichero);
 		try{

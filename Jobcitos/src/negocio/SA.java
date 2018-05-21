@@ -54,7 +54,7 @@ public class SA {
 	}
 	
 	public void retirarse(Oferta oferta){
-		oferta.eliminarTrabajador();
+		oferta.eliminarTrabajador();//transfer
 	}
 	
 	public void valorarOfertante(Oferta oferta){
