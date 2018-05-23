@@ -2,6 +2,8 @@ package negocio;
 
 import excepciones.InconsistenciaDeDatos;
 import integracion.DAOOferta;
+import integracion.DatosOferta;
+import integracion.DatosUsuario;
 
 public class SA {
 	DAOOferta daoO;
@@ -56,12 +58,19 @@ public class SA {
 	public void contratarTrabajador(Oferta oferta,String idTrabajador){
 		oferta.aniadirTrabajador(idTrabajador);
 	}
-	public void editarOferta(Oferta oferta){
-		
+	public void editarOferta(TransferOferta tOferta) throws InconsistenciaDeDatos, IOException{
+		DatosOferta daoOfer = new DatosOferta(fileOfertas);
+		daoOfer.cargarOfertas();
+		if(daoOfer.obtenerOferta(tOferta.getId()).equals(tOferta.getId())) {
+			daoOfer.reemplazarOferta(tOferta.getId(), tOferta);
+		}
 	}
 	
-	public void editarPerfil(Usuario user){
-		
+	public void editarPerfil(TransferUsuario tUser){
+		DatosUsuario daoUSer = new DatosUsuario(/*fileUser*/);
+		if(daoUSer.buscarUsuario(tUser.getId()).equals(tUser.getId())) {
+			daoUSer.actualizarUsuario(tUser);
+		}
 	}
 	public void pagarOferta(Oferta oferta){
 		oferta.ofertaPagada();
