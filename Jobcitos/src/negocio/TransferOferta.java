@@ -1,55 +1,57 @@
-package negocio;
+package oferta;
 
-import utils.MyStringUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransferOferta {
-
-	protected String nombre;
-	protected String descripcion;
-	protected String localizacion;
-	protected String ofertante;
-	protected String trabajadorContratado;
-	protected String candidatos;
-	protected double precioAcordado;
-	protected boolean pagado;
 	
+	private String id;
+	private String titulo;
+	private String descripcion;
+	private String localizacion;
+	private String ofertante;
+	private String trabajadorContratado;
+	private List<String> candidatos;
+	private double precioAcordado;
+	private boolean pagado;
 	
-	public TransferOferta(String nom, String desc, String loc, String of, String trab, String cand, double prAc, boolean p) {
-		this.nombre = nom;
+	public TransferOferta(String ident, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
+		this.id = ident;
+		this.titulo = tit;
 		this.descripcion = desc;
 		this.localizacion = loc;
 		this.ofertante = of;
 		this.trabajadorContratado = trab;
-		this.candidatos = cand;
+		this.candidatos = new ArrayList<String>(cand);
 		this.precioAcordado = prAc;
 		this.pagado = p;
 	}
 	
 	public String getId(){
-		return MyStringUtils.componerCadena(this.nombre, this.ofertante);
+		return this.id;
 	}
 	
-	public String getNombre(){
-		return this.nombre;
+	public String getTitulo(){
+		return this.titulo;
 	}
 	
 	public String getDescripcion() {
 		return this.descripcion;
 	}
 	
-	public String getOfertante() {
-		return this.ofertante;
-	}
-	
 	public String getLocalizacion() {
 		return this.localizacion;
+	}
+	
+	public String getOfertante() {
+		return this.ofertante;
 	}
 	
 	public String getTrabajadorContratado() {
 		return this.trabajadorContratado;
 	}
 	
-	public String getCandidatos(){
+	public List<String> getCandidatos(){
 		return this.candidatos;
 	}
 	
@@ -61,12 +63,16 @@ public class TransferOferta {
 		return this.pagado;
 	}
 	
-	public void setNombre(String nom){
-		this.nombre = nom;
+	public void setId(String ident){
+		this.id = ident;
+	}
+	
+	public void setTitulo(String tit){
+		this.titulo = tit;
 	}
 	
 	public void setDescripcion(String desc){
-		this.nombre = desc;
+		this.titulo = desc;
 	}
 	
 	public void setLocalizacion(String loc) {
@@ -81,13 +87,12 @@ public class TransferOferta {
 		this.trabajadorContratado = trab;
 	}
 	
-	public void setCandidatos(String cand){
+	public void setCandidatos(List<String> cand){
 		this.candidatos = cand;
 	}
 	
 	public void setPrecioAcordado(double prAc){
-		if(!this.pagado)
-			this.precioAcordado = prAc;
+		this.precioAcordado = prAc;
 	}
 	
 	

@@ -1,47 +1,59 @@
-package negocio;
-import java.util.ArrayList;
+package oferta;
+
+import basededatos.DAOOferta;
+import basededatos.ImplDAOOferta;
 
 public class Oferta {
-    private ArrayList<String> listaCandidatos;
-    private String Ofertante;
-    private String Trabajador;
-    private String Lugar;
-    private boolean pagado;
+	
+	private DAOOferta dao;
+	private TransferOferta transOfer;
+	
+	public Oferta(TransferOferta to) {
+		this.dao = ImplDAOOferta.getInstanceOfImplDAOOferta();
+		this.transOfer = to;
+	}
+	
+	public TransferOferta getTransferDeOferta() {
+		return this.transOfer;
+	}
+	
+	public void registrar() {
+		this.dao.insertarOferta(this.transOfer);
+	}
+	
+	public void eliminar() {
+		this.dao.eliminarOferta(this.transOfer.getId());
+	}
+	
+	public void modificar(TransferOferta to){
+		this.dao.reemplazarOferta(this.transOfer.getId(), to);
+		this.transOfer = to;
+	}
+	
+	public void contratarTrabajador(String trabajador) {
+		if(this.transOfer.getCandidatos().contains(trabajador))
+			this.transOfer.setTrabajadorContratado(trabajador);
+		
+		this.dao.reemplazarOferta(this.transOfer.getId(), this.transOfer);
+	}
+	
+	public void agregarCandidato(String candidato) {
+		this.transOfer.getCandidatos().add(candidato);
+		this.dao.reemplazarOferta(this.transOfer.getId(), this.transOfer);
+	}
+	
+	public void eliminarCandidato(String candidato) {
+		this.transOfer.getCandidatos().remove(candidato);
+		this.dao.reemplazarOferta(this.transOfer.getId(), this.transOfer);
+	}
 
-    public Oferta(String Ofertante,String lugar){
-        this.listaCandidatos = new ArrayList<String>();
-        this.Ofertante = Ofertante;
-        this.Trabajador = null;
-        this.Lugar = lugar;
-        this.pagado = false;
-    }
-
-    public boolean eliminarTrabajador(){
-        if(this.Trabajador != null) {
-            this.Trabajador = null;
-            return true;
-        }else return false;
-    }
-
-    public boolean añadirTrabajador(String idTrabajador){
-        if(this.Trabajador != null) return false;
-        else{
-        	//TransferOferta transferO = new TransferOferta(); 
-        	this.Trabajador = idTrabajador;
-        	//transferO.setTrabajador(this.Trabajador);
-        	return true;
-        }
-    }
-
-    public void ofertaPagada(){
-    	//TransferOferta transferO = new TransferOferta(); 
-        this.pagado = true;
-      //transferO.setPagada(this.pagada);
-    }
-
-    public void añadirCandidato(String trabajador){
-    	//TransferOferta transferO = new TransferOferta(); 
-        this.listaCandidatos.add(trabajador);
-      //transferO.setCanditato(this.listaCandidatos);
-    }
+	public void pagarAlTrabajador() {
+		if(this.seHaAcordadoPrecio())
+			this.transOfer.setPagado(true);
+	}
+	
+	private boolean seHaAcordadoPrecio(){
+		return this.transOfer.getPrecioAcordado()>0;
+	}
+	
 }
