@@ -35,7 +35,7 @@ public class ImplDAOOferta implements DAOOferta{
 		// BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(this.ficheroOfertas)));
 	}
 
-	public void guardarOfertasDeMapaEnFichero() throws IOException {
+	public void guardarOfertasEnFichero() throws IOException {
 		// PrintWriter pw = new PrintWriter(new FileOutputStream(this.ficheroOfertas));
 		
 	}
