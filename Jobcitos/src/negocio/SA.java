@@ -1,9 +1,6 @@
 package negocio;
 
 import excepciones.InconsistenciaDeDatos;
-import integracion.DAOOferta;
-import integracion.DatosOferta;
-import integracion.DatosUsuario;
 
 public class SA {
 	
