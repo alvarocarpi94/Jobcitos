@@ -22,7 +22,7 @@ public class TransferOferta {
 		this.localizacion = loc;
 		this.ofertante = of;
 		this.trabajadorContratado = trab;
-		this.candidatos = new ArrayList<String>(cand);
+		this.candidatos = cand;
 		this.precioAcordado = prAc;
 		this.pagado = p;
 	}
