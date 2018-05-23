@@ -7,27 +7,33 @@ import integracion.DatosUsuario;
 
 public class SA {
 	
-	public void crearOferta(String nom, String desc, String loc, String of, double prAc) throws InconsistenciaDeDatos {
-		Oferta oferta = new Oferta(nom, desc, loc, of, prAc);
+	public void crearOferta(TransferOferta tOferta) throws InconsistenciaDeDatos {
+		
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.crearOferta();
 		
 	}
 	
-	public void borrarOferta(Oferta oferta) {
+	public void borrarOferta(TransferOferta tOferta) {
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.borrarOferta();
 	}
 	
 	public void valorarTrabajador(int nota){
 		
 	}
-	public void despedirTrabajador(Oferta oferta){
+	public void despedirTrabajador(TransferOferta tOferta){
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.eliminarTrabajador();
 		
 	}
-	public void contratarTrabajador(Oferta oferta,String idTrabajador){
+	public void contratarTrabajador(TransferOferta tOferta,TransferUsuario tUser){
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
+		String idTrabajador = tUser.getId();
 		oferta.aniadirTrabajador(idTrabajador);
 	}
-	public void editarOferta(TransferOferta tOferta,Oferta oferta) throws InconsistenciaDeDatos{
+	public void editarOferta(TransferOferta tOferta) throws InconsistenciaDeDatos{
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.modificar(tOferta);
 	}
 	
@@ -37,20 +43,45 @@ public class SA {
 			daoUSer.actualizarUsuario(tUser);
 		}
 	}
-	public void pagarOferta(Oferta oferta){
+	public void pagarOferta(TransferOferta tOferta){
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.ofertaPagada();
 	}
 	
-	public void aceptarOferta(String trab,Oferta oferta){
+	public void aceptarOferta(String trab,TransferOferta tOferta){
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.aniadirCandidato(trab);
 	}
 	
-	public void retirarse(Oferta oferta){
+	public void retirarse(TransferOferta tOferta){
+		Oferta oferta = new Oferta(tOferta.getNombre(), tOferta.getDescripcion(),tOferta.getLocalizacion(),tOferta.getOfertante(),tOferta.getPrecioAcordado());
 		oferta.eliminarTrabajador();
 	}
 	
-	public void valorarOfertante(Oferta oferta){
+	public void valorarOfertante(TransferOferta tOferta){
 		
+	}
+	public void buscarOferta(TransferOferta tOferta,TransferUsuario tUser){
+		String nombre = tOferta.getNombre();
+		String nom_usu = tUser.getNombre();
+		String clave = tUser.getContrasenia();
+			
+		Usuario user = new Usuario(nom_usu, clave);
+		user.buscarOferta(nombre);
+	}
+	public void darseBaja(TransferUsuario tUser){
+		String nom_usu = tUser.getNombre();
+		String clave = tUser.getContrasenia();
+			
+		Usuario user = new Usuario(nom_usu, clave);
+		user.darseBaja();
+	}
+	public void crearCuenta(TransferUsuario tUser){
+		String nom_usu = tUser.getNombre();
+		String clave = tUser.getContrasenia();
+			
+		Usuario user = new Usuario(nom_usu, clave);
+			user.crearCuenta();
 	}
 	
 }
