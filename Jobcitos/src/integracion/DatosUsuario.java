@@ -14,56 +14,45 @@ import negocio.TransferUsuario;
 
 public class DatosUsuario implements DAOUsuario{
 	
-	private ArrayList<TransferUsuario> listaUsuarios;
-
-	public DatosUsuario(){
-		listaUsuarios = new ArrayList<TransferUsuario>();
+	private File file;
+	
+	public DatosUsuario(File f){
+		this.file = f;
 	}
 	
 	@Override
-	public TransferUsuario cargarUsuario(TransferUsuario tUsuario){
-		TransferUsuario usuarioBD = buscarUsuario(tUsuario.getId());
-		if(usuarioBD != null){
-			return usuarioBD;
-		}
-		return null;
-	}
-
-	@Override
 	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {//usuario no tiene candidatos
-		String nombreFichero = "Usuarios.txt";
-		File fichero= new File(nombreFichero);
 		try{
-			FileWriter fw = new FileWriter(fichero);
+			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pw = new PrintWriter(bw);
-			pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()
-			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + tUsuario.getlistaOfertas() + " " + tUsuario.getlistaCandidatos() + "\n");
+			String lista = recorreListaOfertas(tUsuario.getlistaOfertas());
+			pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()  
+			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
 		}catch(Exception e){}
 		
 		return null;
 	}
-
+	
 	@Override
-	public void insertarUsuario(TransferUsuario tUsuario) {
-		listaUsuarios.add(tUsuario);
-		guardarUsuario(tUsuario);
-	}
-
-	@Override
-	public void eliminarUsuario(TransferUsuario tUsuario) {
-		listaUsuarios.remove(tUsuario);
-		//eliminar en archivo
+	public void modificarUsuario(TransferUsuario tUsuario, boolean actualizar) {
 		 try {
 		        File File = new File("Usuarios.txt");
 		        File tempFile = new File(File.getAbsolutePath() + ".tmp");
 		        BufferedReader br = new BufferedReader(new FileReader("Usuarios.txt"));
 		        PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		        String lista = recorreListaOfertas(tUsuario.getlistaOfertas());
 		        String line = null;
 		        while ((line = br.readLine()) != null) {
 		            if (!line.trim().equals(tUsuario.getId())) {
 		                pw.println(line);
 		                pw.flush();
+		            }else{
+		            	if(actualizar){
+		            		pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia() + " " + tUsuario.getNombre() + " " + 
+			            			tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador() + " " + lista);
+			            	pw.flush();
+		            	}
 		            }
 		        }
 		        pw.close();
@@ -83,32 +72,26 @@ public class DatosUsuario implements DAOUsuario{
 		    }
 	}
 
-	@Override
-	public void actualizarUsuario(TransferUsuario tUsuario) {
-		for(int i = 0; i < listaUsuarios.size(); i++){
-			if(tUsuario.getId() == listaUsuarios.get(i).getId()){
-				listaUsuarios.set(i, tUsuario);
-			}
-		}
-		//escribir en archivo
-	}
 	//buscar usuario por nombre y apellidos
 	@Override
-	public TransferUsuario buscarUsuario(String usuario){
+	public TransferUsuario buscarUsuario(TransferUsuario tUsuario){
 		try{
 			TransferUsuario usuarioT = null;
-			String nombre = usuario.split(" ")[0];
-			String apellido =usuario.split(" ")[1];
-			FileReader archivo = new FileReader("Usuarios.txt");
+			String nombre = tUsuario.getNombre().split(" ")[0];
+			String apellido = tUsuario.getNombre().split(" ")[1];
+			FileReader archivo = new FileReader(file);
 			BufferedReader bf = new BufferedReader(archivo);
 			String linea = "";
 			String linea2 = "";
+			String mail = "";
 			String bfRead;
 			while((bfRead = bf.readLine()) != null){
+				mail = bfRead.split("")[0];
 				linea = bfRead.split(" ")[2];
 				linea2 = bfRead.split(" ")[3];
-				if(linea.equals(nombre) && linea2.equals(apellido)){
-					//usuarioT = new TransferUsuario(bfRead.split(" ")[0], bfRead.split(" ")[1], linea+" "+linea2);
+				if(linea.equals(nombre) && linea2.equals(apellido) && mail.equals(tUsuario.getId())){
+					usuarioT = new TransferUsuario(tUsuario.getId(), tUsuario.getContrasenia(), tUsuario.getNombre(), tUsuario.getApellido(), tUsuario.getMediaOfertante(),
+							tUsuario.getMediaTrabajador(), tUsuario.getlistaOfertas());
 					bf.close();
 					return usuarioT;
 				}
@@ -118,6 +101,18 @@ public class DatosUsuario implements DAOUsuario{
 			System.out.println("El archivo no existe.");
 		}
 		return null;
+	}
+	//Metodo privado que recorre el arraylist y lo convierte en un String
+	private String recorreListaOfertas(ArrayList<String> listaOfertas){
+		String cadena = "";
+		for(int i = 0; i< listaOfertas.size(); i++){
+			if(i < listaOfertas.size() - 1){
+				cadena = cadena + listaOfertas.get(i) + ";";
+			}else{
+				cadena = cadena + listaOfertas.get(i);
+			}
+		}
+		return cadena;
 	}
 	//buscar usuario por email/IdUsuario
 	/*public TransferUsuario buscarUsuario(String usuario){

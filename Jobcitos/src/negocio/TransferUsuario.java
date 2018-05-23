@@ -7,15 +7,16 @@ public class TransferUsuario {
 	private String email;
 	private String contrasenia;
 	private String nombre;
+	private String apellido;
 	private int mediaOfertante;
 	private int mediaTrabajador;
 	private ArrayList<String> listaOfertas;
-	private ArrayList<String> listaCandidatos;
 	
-	public TransferUsuario(String Id, String contrasenia, String nombre, int mediaO,
-			int mediaT, String listaOfertas, String listaCandidatos){
+	public TransferUsuario(String Id, String contrasenia, String nombre, String apellido, int mediaO,
+			int mediaT, String listaOfertas){
 		this.email = Id;
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.contrasenia = contrasenia;
 		this.listaOfertas = new ArrayList<String>();
 		if(listaOfertas !=null){
@@ -23,16 +24,26 @@ public class TransferUsuario {
 				this.listaOfertas.add(i, listaOfertas.split(";")[i]);
 			}
 		}
-		this.listaCandidatos = new ArrayList<String>();
-		if(listaCandidatos !=null){
-			for(int i = 0; i < listaCandidatos.length(); i++){
-				this.listaCandidatos.add(i, listaCandidatos.split(";")[i]);
-			}
+	}
+	
+	public TransferUsuario(String Id, String contrasenia, String nombre, String apellido, int mediaO,
+			int mediaT, ArrayList<String> listaOfertas){
+		this.email = Id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.contrasenia = contrasenia;
+		this.listaOfertas = new ArrayList<String>();
+		if(listaOfertas !=null){
+			this.listaOfertas = listaOfertas;
 		}
 	}
 	
 	public String getNombre(){
 		return nombre;
+	}
+	
+	public String getApellido(){
+		return apellido;
 	}
 	
 	public String getId() {
@@ -51,10 +62,6 @@ public class TransferUsuario {
 		return listaOfertas;
 	}
 	
-	public ArrayList<String> getlistaCandidatos() {
-		return listaCandidatos;
-	}
-	
 	public int getMediaOfertante() {
 		return mediaOfertante;
 	}
@@ -63,8 +70,12 @@ public class TransferUsuario {
 		return mediaTrabajador;
 	}
 	
-	public void setNombre(String cadena){
-		nombre = cadena;
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public void setApellido(String apellido){
+		this.apellido = apellido;
 	}
 	
 	public void setId(String id) {
@@ -91,12 +102,6 @@ public class TransferUsuario {
 	public void setlistaOfertas(ArrayList<String> lista) {
 		for(int i = 0; i < lista.size(); i++){
 			listaOfertas.set(i, lista.get(i));
-		}
-	}
-	
-	public void setlistaCandidatos(ArrayList<String> lista) {
-		for(int i = 0; i < lista.size(); i++){
-			listaCandidatos.set(i, lista.get(i));
 		}
 	}
 	
