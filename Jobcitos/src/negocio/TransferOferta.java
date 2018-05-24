@@ -1,6 +1,5 @@
 package negocio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TransferOferta {
@@ -72,7 +71,7 @@ public class TransferOferta {
 	}
 	
 	public void setDescripcion(String desc){
-		this.titulo = desc;
+		this.descripcion = desc;
 	}
 	
 	public void setLocalizacion(String loc) {
