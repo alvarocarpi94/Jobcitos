@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import negocio.TransferOferta;
-import util.MyStringUtils;
+import utils.MyStringUtils;
 
 public class ImplDAOOferta implements DAOOferta{
 	
