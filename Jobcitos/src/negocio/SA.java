@@ -24,7 +24,7 @@ public class SA {
 	}
 	public void despedirTrabajador(TransferOferta tOferta){
 		Oferta oferta = new Oferta(tOferta);
-		//oferta.eliminarCandidato(tOferta.getTrabajadorContratado());
+		oferta.eliminarTrabajador();//solo va a haber un trabajador asi que no hace falta pasar el trabajador
 		
 	}
 	public void contratarTrabajador(TransferOferta tOferta,TransferUsuario tUser){
