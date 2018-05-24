@@ -46,7 +46,10 @@ public class Oferta {
 		this.transOfer.getCandidatos().remove(candidato);
 		this.dao.reemplazarOferta(this.transOfer.getId(), this.transOfer);
 	}
-
+	public void eliminarTrabajador(){
+		this.transOfer.setTrabajadorContratado(null);
+		this.dao.reemplazarOferta(this.transOfer.getId(), this.transOfer);
+	}
 	public void pagarAlTrabajador() {
 		if(this.seHaAcordadoPrecio())
 			this.transOfer.setPagado(true);
