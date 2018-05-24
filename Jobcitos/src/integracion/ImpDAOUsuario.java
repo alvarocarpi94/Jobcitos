@@ -71,12 +71,10 @@ public class ImpDAOUsuario implements DAOUsuario{
 		        ex.printStackTrace();
 		    }
 	}
-
-	//buscar usuario por nombre y apellidos
 	@Override
-	public TransferUsuario buscarUsuario(TransferUsuario tUsuario){
+	public ArrayList<TransferUsuario> buscarUsuario(TransferUsuario tUsuario){
+		ArrayList<TransferUsuario> listaUsuarios = null;
 		try{
-			TransferUsuario usuarioT = null;
 			String nombre = tUsuario.getNombre().split(" ")[0];
 			String apellido = tUsuario.getNombre().split(" ")[1];
 			FileReader archivo = new FileReader(file);
@@ -89,18 +87,24 @@ public class ImpDAOUsuario implements DAOUsuario{
 				mail = bfRead.split("")[0];
 				linea = bfRead.split(" ")[2];
 				linea2 = bfRead.split(" ")[3];
-				if(linea.equals(nombre) && linea2.equals(apellido) && mail.equals(tUsuario.getId())){
-					usuarioT = new TransferUsuario(tUsuario.getId(), tUsuario.getContrasenia(), tUsuario.getNombre(), tUsuario.getApellido(), tUsuario.getMediaOfertante(),
-							tUsuario.getMediaTrabajador(), tUsuario.getlistaOfertas());
+				if(linea.equals(nombre) && linea2.equals(apellido)){
+					listaUsuarios = new ArrayList<TransferUsuario>();
+					Integer[] mediaOfertante = new Integer[2];
+					Integer[] mediaTrabajador = new Integer[2];
+					mediaOfertante[0] = Integer.parseInt(bfRead.split(" ")[4].split("-")[0]);
+					mediaOfertante[1] = Integer.parseInt(bfRead.split(" ")[4].split("-")[1]);
+					mediaTrabajador[0] = Integer.parseInt(bfRead.split(" ")[5].split("-")[0]);
+					mediaTrabajador[1] = Integer.parseInt(bfRead.split(" ")[5].split("-")[1]);
+					listaUsuarios.add(new TransferUsuario(bfRead.split(" ")[0], bfRead.split(" ")[1], bfRead.split(" ")[2], bfRead.split(" ")[3],
+								mediaOfertante, mediaTrabajador, bfRead.split(" ")[6]));
 					bf.close();
-					return usuarioT;
 				}
 			}
 			bf.close();
 		}catch(Exception e){
 			System.out.println("El archivo no existe.");
 		}
-		return null;
+		return listaUsuarios;
 	}
 	//Metodo privado que recorre el arraylist y lo convierte en un String
 	private String recorreListaOfertas(ArrayList<String> listaOfertas){
