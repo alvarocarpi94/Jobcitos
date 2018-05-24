@@ -1,9 +1,7 @@
 package negocio;
 
-import java.io.File;
 
 import integracion.DAOOferta;
-import integracion.ImpDAOUsuario;
 import integracion.ImplDAOOferta;
 
 public class Oferta {
@@ -61,6 +59,11 @@ public class Oferta {
 		this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
 	}
 
+	public void eliminarTrabajador(){
+		this.transOfer.setTrabajadorContratado(null);
+		this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
+	}
+	
 	public void pagarAlTrabajador() {
 		if(this.seHaAcordadoPrecio())
 			this.transOfer.setPagado(true);
