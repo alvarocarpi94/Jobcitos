@@ -1,4 +1,4 @@
-package basededatos;
+package integracion;
 
 // import java.io.BufferedReader;
 // import java.io.File;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import oferta.TransferOferta;
+import negocio.TransferOferta;
 
 public class ImplDAOOferta implements DAOOferta{
 	

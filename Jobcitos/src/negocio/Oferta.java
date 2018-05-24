@@ -1,7 +1,7 @@
-package oferta;
+package negocio;
 
-import basededatos.DAOOferta;
-import basededatos.ImplDAOOferta;
+import integracion.DAOOferta;
+import integracion.ImplDAOOferta;
 
 public class Oferta {
 	
