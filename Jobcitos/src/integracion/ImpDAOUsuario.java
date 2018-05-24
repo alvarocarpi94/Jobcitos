@@ -72,7 +72,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 		    }
 	}
 	@Override
-	public ArrayList<TransferUsuario> buscarUsuario(TransferUsuario tUsuario){
+	public ArrayList<TransferUsuario> buscarUsuarios(TransferUsuario tUsuario){
 		ArrayList<TransferUsuario> listaUsuarios = null;
 		try{
 			String nombre = tUsuario.getNombre().split(" ")[0];
@@ -81,10 +81,8 @@ public class ImpDAOUsuario implements DAOUsuario{
 			BufferedReader bf = new BufferedReader(archivo);
 			String linea = "";
 			String linea2 = "";
-			String mail = "";
 			String bfRead;
 			while((bfRead = bf.readLine()) != null){
-				mail = bfRead.split("")[0];
 				linea = bfRead.split(" ")[2];
 				linea2 = bfRead.split(" ")[3];
 				if(linea.equals(nombre) && linea2.equals(apellido)){
@@ -105,6 +103,40 @@ public class ImpDAOUsuario implements DAOUsuario{
 			System.out.println("El archivo no existe.");
 		}
 		return listaUsuarios;
+	}
+	@Override
+	public TransferUsuario buscarUsuario(TransferUsuario tUsuario){
+		TransferUsuario UsuarioT = null;
+		try{
+			String nombre = tUsuario.getNombre().split(" ")[0];
+			String apellido = tUsuario.getNombre().split(" ")[1];
+			FileReader archivo = new FileReader(file);
+			BufferedReader bf = new BufferedReader(archivo);
+			String linea = "";
+			String linea2 = "";
+			String mail = "";
+			String bfRead;
+			while((bfRead = bf.readLine()) != null){
+				mail = bfRead.split("")[0];
+				linea = bfRead.split(" ")[2];
+				linea2 = bfRead.split(" ")[3];
+				if(linea.equals(nombre) && linea2.equals(apellido) && mail.equals(tUsuario.getId())){
+					Integer[] mediaOfertante = new Integer[2];
+					Integer[] mediaTrabajador = new Integer[2];
+					mediaOfertante[0] = Integer.parseInt(bfRead.split(" ")[4].split("-")[0]);
+					mediaOfertante[1] = Integer.parseInt(bfRead.split(" ")[4].split("-")[1]);
+					mediaTrabajador[0] = Integer.parseInt(bfRead.split(" ")[5].split("-")[0]);
+					mediaTrabajador[1] = Integer.parseInt(bfRead.split(" ")[5].split("-")[1]);
+					UsuarioT = new TransferUsuario(bfRead.split(" ")[0], bfRead.split(" ")[1], bfRead.split(" ")[2], bfRead.split(" ")[3],
+							mediaOfertante, mediaTrabajador, bfRead.split(" ")[6]);
+					bf.close();
+				}
+			}
+			bf.close();
+		}catch(Exception e){
+			System.out.println("El archivo no existe.");
+		}
+		return UsuarioT;
 	}
 	//Metodo privado que recorre el arraylist y lo convierte en un String
 	private String recorreListaOfertas(ArrayList<String> listaOfertas){
