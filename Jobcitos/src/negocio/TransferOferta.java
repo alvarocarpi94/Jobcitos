@@ -9,8 +9,8 @@ public class TransferOferta {
 	private String titulo;
 	private String descripcion;
 	private String localizacion;
-	private String ofertante;
-	private String trabajadorContratado;
+	private String ofertante; //id
+	private String trabajadorContratado;//id
 	private List<String> candidatos;
 	private double precioAcordado;
 	private boolean pagado;

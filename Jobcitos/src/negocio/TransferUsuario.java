@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TransferUsuario {
 	
-	private String email;
+	private String email; //id
 	private String contrasenia;
 	private String nombre;
 	private String apellido;
@@ -121,13 +121,13 @@ public class TransferUsuario {
 		}
 	}
 	//Añade la media calculada y suma 1 al nº de votos
-	public void setMediaOfertante(int media) {
-		mediaOfertante[0] = media;
+	public void setMediaOfertante(int suma) {
+		mediaOfertante[0] += suma;
 		mediaOfertante[1] += 1;
 	}
 	//Añade la media calculada y suma 1 al nº de votos
-	public void setMediaTrabajador(int media) {
-		mediaTrabajador[0] = media;
+	public void setMediaTrabajador(int suma) {
+		mediaTrabajador[0] += suma;
 		mediaTrabajador[1] += 1;
 	}
 	
