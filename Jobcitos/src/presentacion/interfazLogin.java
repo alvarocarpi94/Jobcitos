@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ventana;
+package presentacion;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -38,7 +38,7 @@ public class interfazLogin extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
-        contraseña = new javax.swing.JLabel();
+        contrasenia = new javax.swing.JLabel();
         textouser = new javax.swing.JTextField();
         textopass = new javax.swing.JPasswordField();
         sesion = new javax.swing.JButton();
@@ -71,11 +71,11 @@ public class interfazLogin extends javax.swing.JFrame {
         usuario.setText("Usuario: ");
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
-        contraseña.setBackground(new java.awt.Color(255, 255, 255));
-        contraseña.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        contraseña.setForeground(new java.awt.Color(255, 255, 255));
-        contraseña.setText("Contraseña: ");
-        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        contrasenia.setBackground(new java.awt.Color(255, 255, 255));
+        contrasenia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        contrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        contrasenia.setText("Contrase�a: ");
+        getContentPane().add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         textouser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(textouser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 160, -1));
@@ -183,7 +183,7 @@ public class interfazLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel contraseña;
+    private javax.swing.JLabel contrasenia;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel logo;

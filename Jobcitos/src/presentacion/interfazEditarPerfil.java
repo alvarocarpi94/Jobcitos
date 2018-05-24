@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ventana;
+package presentacion;
 import java.awt.Image;
 import java.awt.Toolkit;
 /**
@@ -46,7 +46,7 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
         nombre2 = new javax.swing.JButton();
         ciudad2 = new javax.swing.JButton();
         correo = new javax.swing.JButton();
-        contraseña = new javax.swing.JButton();
+        contrasenia = new javax.swing.JButton();
         telefono = new javax.swing.JButton();
         menu = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
@@ -142,11 +142,11 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
         correo.setContentAreaFilled(false);
         getContentPane().add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
 
-        contraseña.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        contraseña.setForeground(new java.awt.Color(0, 0, 255));
-        contraseña.setText("Cambiar contraseña");
-        contraseña.setContentAreaFilled(false);
-        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, -1, -1));
+        contrasenia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        contrasenia.setForeground(new java.awt.Color(0, 0, 255));
+        contrasenia.setText("Cambiar contrase�a");
+        contrasenia.setContentAreaFilled(false);
+        getContentPane().add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, -1, -1));
 
         telefono.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         telefono.setForeground(new java.awt.Color(0, 0, 255));
@@ -235,7 +235,7 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel ciudad;
     private javax.swing.JButton ciudad2;
     private javax.swing.JButton confirmar;
-    private javax.swing.JButton contraseña;
+    private javax.swing.JButton contrasenia;
     private javax.swing.JButton correo;
     private javax.swing.JButton crear;
     private javax.swing.JLabel fondo;
