@@ -1,10 +1,12 @@
 package negocio;
 
+import java.io.File;
+
 import integracion.ImpDAOUsuario;
 import excepciones.InconsistenciaDeDatos;
 
 public class SA {
-	
+	private File f;
 	public void crearOferta(TransferOferta tOferta) throws InconsistenciaDeDatos {
 		
 		Oferta oferta = new Oferta(tOferta);
@@ -60,24 +62,16 @@ public class SA {
 	}
 	public void buscarOferta(TransferOferta tOferta,TransferUsuario tUser){
 		String nombre = tOferta.getTitulo();
-		String nom_usu = tUser.getNombre();
-		String clave = tUser.getContrasenia();
-			
-		Usuario user = new Usuario(nom_usu, clave);
+		Usuario user = new Usuario(tUser,f);
 		user.buscarOferta(nombre);
 	}
 	public void darseBaja(TransferUsuario tUser){
-		String nom_usu = tUser.getNombre();
-		String clave = tUser.getContrasenia();
-			
-		Usuario user = new Usuario(nom_usu, clave);
+
+		Usuario user = new Usuario(tUser,f);
 		user.darseBaja();
 	}
 	public void crearCuenta(TransferUsuario tUser){
-		String nom_usu = tUser.getNombre();
-		String clave = tUser.getContrasenia();
-			
-		Usuario user = new Usuario(nom_usu, clave);
+		Usuario user = new Usuario(tUser,f);
 			user.crearCuenta();
 	}
 	

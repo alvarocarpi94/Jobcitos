@@ -1,20 +1,21 @@
 package negocio;
 
+import integracion.DAOUsuario;
+import integracion.ImpDAOUsuario;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class Usuario {
 	
 //Atributos
-String idUsuario;
-String contrasenia;
-ArrayList<Oferta>  ofertas;
-
+	private DAOUsuario dUser;
+	private TransferUsuario tUser;
 
 //metodos
-public Usuario(String id, String contra){
-	this.idUsuario=id;
-	this.contrasenia=contra;
-	this.ofertas=new  ArrayList<Oferta>();
+public Usuario(TransferUsuario tuser, File f){
+	this.dUser= new ImpDAOUsuario(f);
+	this.tUser= tuser;
 }
 
 Oferta buscarOferta(String Nombre){
@@ -35,7 +36,10 @@ void darseBaja(){
 	
 }
 
-void crearCuenta(){}
+void crearCuenta(){
+	dUser.guardarUsuario(this.tUser);
+}
+
 void EnviarMensaje(String msm,String user1, String user2 ){
 	
 }
