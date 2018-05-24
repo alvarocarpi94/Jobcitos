@@ -2,6 +2,7 @@ package negocio;
 
 import integracion.DAOUsuario;
 import integracion.ImpDAOUsuario;
+import integracion.ImplDAOOferta;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,37 +12,30 @@ public class Usuario {
 //Atributos
 	private DAOUsuario dUser;
 	private TransferUsuario tUser;
+	
 
-//metodos
-public Usuario(TransferUsuario tuser, File f){
-	this.dUser= new ImpDAOUsuario(f);
-	this.tUser= tuser;
-}
-
-Oferta buscarOferta(String Nombre){
-	boolean encontrado =false;
-	Oferta oferta=null;
-	int i=0;
-	while(encontrado) { 
-		if(ofertas.get(i).equals(Nombre)) {//.getNombre().equals(nombre);{
-			encontrado =true;
-			oferta = ofertas.get(i); 
-		}
-		i++;
+	//metodos
+	public Usuario(TransferUsuario tuser, File f){
+		this.dUser= new ImpDAOUsuario(f);
+		this.tUser= tuser;
 	}
-	return oferta;
-}
-void darseBaja(){
 	
+	public TransferOferta buscarOferta(String nombre){
+		TransferOferta tOferta=null;
+		ImplDAOOferta dOferta = ImplDAOOferta.getInstanceOfImplDAOOferta();
+		tOferta=dOferta.obtenerOferta(nombre);
+		return tOferta;
+	}
+	public void darseBaja(){
+		this.dUser.modificarUsuario(this.tUser, false);
+	}
 	
-}
+	public void crearCuenta(){
+		dUser.guardarUsuario(this.tUser);
+	}
 
-void crearCuenta(){
-	dUser.guardarUsuario(this.tUser);
-}
+	public void editarPerfil(TransferUsuario tUser){
+		dUser.modificarUsuario(tUser, true);
 
-void EnviarMensaje(String msm,String user1, String user2 ){
-	
-}
-
+	}
 }

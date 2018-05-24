@@ -72,7 +72,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 		    }
 	}
 	@Override
-	public ArrayList<TransferUsuario> buscarUsuarios(TransferUsuario tUsuario){
+	public ArrayList<TransferUsuario> buscarUsuarios(String id){
 		ArrayList<TransferUsuario> listaUsuarios = null;
 		try{
 			String nombre = tUsuario.getNombre().split(" ")[0];

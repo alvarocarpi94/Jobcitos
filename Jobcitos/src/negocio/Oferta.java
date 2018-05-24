@@ -1,6 +1,9 @@
 package negocio;
 
+import java.io.File;
+
 import integracion.DAOOferta;
+import integracion.ImpDAOUsuario;
 import integracion.ImplDAOOferta;
 
 public class Oferta {
@@ -59,4 +62,11 @@ public class Oferta {
 		return this.transOfer.getPrecioAcordado()>0;
 	}
 	
+	public void valorarOfertante(TransferUsuario tUser, int valoracion){
+		tUser.setMediaOfertante(valoracion);
+	}
+	
+	public void valorarTrabajador(TransferUsuario tUser, int valoracion){
+		tUser.setMediaTrabajador(valoracion);
+	}
 }
