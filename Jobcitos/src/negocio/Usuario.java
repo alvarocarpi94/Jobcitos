@@ -14,8 +14,8 @@ public class Usuario {
 	
 
 	//metodos
-	public Usuario(TransferUsuario tuser, File f){
-		this.dUser= new ImpDAOUsuario(f);
+	public Usuario(TransferUsuario tuser){
+		this.dUser=  ImpDAOUsuario.getInstanceOfImpDAOUsuario();
 		this.tUser= tuser;
 	}
 	

@@ -6,12 +6,7 @@ import integracion.ImpDAOUsuario;
 import excepciones.InconsistenciaDeDatos;
 
 public class SA {
-	private File fUser;
-		
-	public SA(){
-		this.fUser=new File("Usuarios.txt");
-		
-	}
+	
 	
 	public void crearOferta(TransferOferta tOferta) throws InconsistenciaDeDatos {
 		
@@ -25,7 +20,7 @@ public class SA {
 	}
 	
 	public void valorarTrabajador(TransferOferta tOferta, int valoracion){
-		ImpDAOUsuario dUser= new ImpDAOUsuario(fUser);
+		ImpDAOUsuario dUser=  ImpDAOUsuario.getInstanceOfImpDAOUsuario();
 		Oferta oferta = new Oferta(tOferta);
 		TransferUsuario tUser=dUser.buscarUsuario(tOferta.getTrabajadorContratado());
 		oferta.valorarTrabajador(tUser, valoracion);
@@ -47,7 +42,7 @@ public class SA {
 	}
 	
 	public void editarPerfil(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 		user.editarPerfil(tUser);
 	}
 	
@@ -67,7 +62,7 @@ public class SA {
 	}
 	
 	public void valorarOfertante(TransferOferta tOferta, int valoracion){
-		ImpDAOUsuario dUser= new ImpDAOUsuario(fUser);
+		ImpDAOUsuario dUser= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
 		Oferta oferta = new Oferta(tOferta);
 		TransferUsuario tUser=dUser.buscarUsuario(tOferta.getOfertante());
 		oferta.valorarOfertante(tUser,valoracion);
@@ -75,18 +70,18 @@ public class SA {
 	
 	public void buscarOferta(TransferOferta tOferta,TransferUsuario tUser){
 		String nombre = tOferta.getTitulo();
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 		user.buscarOferta(nombre);
 	}
 	
 	public void darseBaja(TransferUsuario tUser){
 
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 		user.darseBaja();
 	}
 	
 	public void crearCuenta(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 			user.crearCuenta();
 	}
 	
