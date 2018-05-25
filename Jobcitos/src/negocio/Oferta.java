@@ -2,7 +2,7 @@ package negocio;
 
 
 import integracion.DAOOferta;
-import integracion.ImplDAOOferta;
+import integracion.ImpDAOOferta;
 
 public class Oferta {
 	
@@ -10,7 +10,7 @@ public class Oferta {
 	private TransferOferta transOfer;
 	
 	public Oferta(TransferOferta to) {
-		this.dao = ImplDAOOferta.getInstanceOfImplDAOOferta();
+		this.dao = ImpDAOOferta.getInstanceOfImplDAOOferta();
 		this.transOfer = to;
 	}
 	

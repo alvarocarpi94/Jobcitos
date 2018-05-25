@@ -29,6 +29,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 			String lista = recorreListaOfertas(tUsuario.getlistaOfertas());
 			pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()  
 			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
+			pw.close();
 		}catch(Exception e){}
 		
 		return null;

@@ -2,10 +2,9 @@ package negocio;
 
 import integracion.DAOUsuario;
 import integracion.ImpDAOUsuario;
-import integracion.ImplDAOOferta;
+import integracion.ImpDAOOferta;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Usuario {
 	
@@ -22,7 +21,7 @@ public class Usuario {
 	
 	public TransferOferta buscarOferta(String nombre){
 		TransferOferta tOferta=null;
-		ImplDAOOferta dOferta = ImplDAOOferta.getInstanceOfImplDAOOferta();
+		ImpDAOOferta dOferta = ImpDAOOferta.getInstanceOfImplDAOOferta();
 		tOferta=dOferta.obtenerOferta(nombre);
 		return tOferta;
 	}
