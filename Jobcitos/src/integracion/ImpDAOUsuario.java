@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import negocio.TransferUsuario;
 
@@ -26,12 +27,15 @@ public class ImpDAOUsuario implements DAOUsuario{
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pw = new PrintWriter(bw);
-			String lista = recorreListaOfertas(tUsuario.getlistaOfertas());
+			String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
 			pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()  
 			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
-			pw.close();
-		}catch(Exception e){}
+		}catch(Exception e){
+			
+		}
+
 		
+		//FALTA CERRAR EL PRINTWRITER
 		return null;
 	}
 	
@@ -42,7 +46,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 		        File tempFile = new File(File.getAbsolutePath() + ".tmp");
 		        BufferedReader br = new BufferedReader(new FileReader("Usuarios.txt"));
 		        PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-		        String lista = recorreListaOfertas(tUsuario.getlistaOfertas());
+		        String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
 		        String line = null;
 		        while ((line = br.readLine()) != null) {
 		            if (!line.trim().equals(tUsuario.getId())) {
@@ -74,8 +78,8 @@ public class ImpDAOUsuario implements DAOUsuario{
 	}
 	@Override
 	//Buscar por nombre y apellidos !!!!!!!!
-	public ArrayList<TransferUsuario> buscarUsuarios(String nombre, String apellido){
-		ArrayList<TransferUsuario> listaUsuarios = null;
+	public List<TransferUsuario> buscarUsuarios(String nombre, String apellido){
+		List<TransferUsuario> listaUsuarios = null;
 		try{
 			FileReader archivo = new FileReader(file);
 			BufferedReader bf = new BufferedReader(archivo);
@@ -134,7 +138,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 		return UsuarioT;
 	}
 	//Metodo privado que recorre el arraylist y lo convierte en un String
-	private String recorreListaOfertas(ArrayList<String> listaOfertas){
+	private String recorreListaOfertas(List<String> listaOfertas){
 		String cadena = "";
 		for(int i = 0; i< listaOfertas.size(); i++){
 			if(i < listaOfertas.size() - 1){
@@ -169,4 +173,3 @@ public class ImpDAOUsuario implements DAOUsuario{
 	}*/
 
 }
-
