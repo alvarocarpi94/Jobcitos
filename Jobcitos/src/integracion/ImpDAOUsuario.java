@@ -73,11 +73,9 @@ public class ImpDAOUsuario implements DAOUsuario{
 	}
 	@Override
 	//Buscar por nombre y apellidos !!!!!!!!
-	public ArrayList<TransferUsuario> buscarUsuarios(String nombre){
+	public ArrayList<TransferUsuario> buscarUsuarios(String nombre, String apellido){
 		ArrayList<TransferUsuario> listaUsuarios = null;
 		try{
-			String nombre = tUsuario.getNombre().split(" ")[0];
-			String apellido = tUsuario.getNombre().split(" ")[1];
 			FileReader archivo = new FileReader(file);
 			BufferedReader bf = new BufferedReader(archivo);
 			String linea = "";
@@ -110,19 +108,13 @@ public class ImpDAOUsuario implements DAOUsuario{
 	public TransferUsuario buscarUsuario(String id){
 		TransferUsuario UsuarioT = null;
 		try{
-			String nombre = tUsuario.getNombre().split(" ")[0];
-			String apellido = tUsuario.getNombre().split(" ")[1];
 			FileReader archivo = new FileReader(file);
 			BufferedReader bf = new BufferedReader(archivo);
-			String linea = "";
-			String linea2 = "";
 			String mail = "";
 			String bfRead;
 			while((bfRead = bf.readLine()) != null){
 				mail = bfRead.split("")[0];
-				linea = bfRead.split(" ")[2];
-				linea2 = bfRead.split(" ")[3];
-				if(linea.equals(nombre) && linea2.equals(apellido) && mail.equals(tUsuario.getId())){
+				if(mail.equals(id)){
 					Integer[] mediaOfertante = new Integer[2];
 					Integer[] mediaTrabajador = new Integer[2];
 					mediaOfertante[0] = Integer.parseInt(bfRead.split(" ")[4].split("-")[0]);
