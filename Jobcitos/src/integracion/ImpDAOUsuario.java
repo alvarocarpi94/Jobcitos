@@ -16,53 +16,73 @@ import negocio.TransferUsuario;
 public class ImpDAOUsuario implements DAOUsuario{
 	
 	private File file;
+	private static ImpDAOUsuario instancia = null;
 	
-	public ImpDAOUsuario(File f){
-		this.file = f;
+	
+	private ImpDAOUsuario(){
+		this.file = new File("Usuarios.txt");
+	}
+	
+	public static ImpDAOUsuario getInstanceOfImpDAOUsuario(){
+		if(ImpDAOUsuario.instancia == null){
+			ImpDAOUsuario.instancia = new ImpDAOUsuario();
+		}
+		return ImpDAOUsuario.instancia;
 	}
 	
 	@Override
 	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {//usuario no tiene candidatos
-		try{
+		//try{
+			File file = this.file;
+			try{
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pw = new PrintWriter(bw);
+			//PrintWriter pw = new PrintWriter(bw);
 			String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
-			pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()  
-			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
-		}catch(Exception e){
+			String linea = new String(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre() + " " + tUsuario.getApellido() + " "
+									+ tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
+			bw.write(linea);
 			
-		}
-
-		
-		//FALTA CERRAR EL PRINTWRITER
-		return null;
+			
+			/*pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()  
+			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");*/
+			//pw.flush();
+			bw.close();
+			}catch(IOException e){
+				System.out.print("ESCORIA");
+			}
+			//bw.close();
+			//bw.flush();
+			//fw.close();
+		//}catch(Exception e){
+			
+		//}
+		return tUsuario;
 	}
 	
 	@Override
 	public void modificarUsuario(TransferUsuario tUsuario, boolean actualizar) {
 		 try {
-		        File File = new File("Usuarios.txt");
-		        File tempFile = new File(File.getAbsolutePath() + ".tmp");
-		        BufferedReader br = new BufferedReader(new FileReader("Usuarios.txt"));
-		        PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-		        String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
-		        String line = null;
-		        while ((line = br.readLine()) != null) {
-		            if (!line.trim().equals(tUsuario.getId())) {
-		                pw.println(line);
-		                pw.flush();
-		            }else{
-		            	if(actualizar){
-		            		pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia() + " " + tUsuario.getNombre() + " " + 
+		       File File = this.file;
+		       File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
+		       BufferedReader br = new BufferedReader(new FileReader(File));
+		       PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		       String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
+		       String line = null;
+		       while ((line = br.readLine()) != null) {
+		           if (!line.trim().equals(tUsuario.getId())) {
+		               pw.println(line);
+		               pw.flush();
+		           }else{
+		        	   if(actualizar){
+		        		   pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia() + " " + tUsuario.getNombre() + " " + 
 			            			tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador() + " " + lista);
-			            	pw.flush();
-		            	}
-		            }
+		        		   pw.flush();
+		        	   }
+		           }
 		        }
 		        pw.close();
 		        br.close();
-		 
 		        if (!File.delete()) {
 		            System.out.println("No se puede borrar el archivo.");
 		        }
