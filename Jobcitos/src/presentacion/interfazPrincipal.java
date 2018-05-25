@@ -16,10 +16,12 @@ public class interfazPrincipal extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Controlador ctrl;
 	/**
      * Creates new form interfazPrincipal
      */
-    public interfazPrincipal() {
+    public interfazPrincipal(Controlador ctrl) {
+    	this.ctrl = ctrl;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -191,7 +193,7 @@ public class interfazPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
-        interfazPerfil a = new interfazPerfil();
+        interfazPerfil a = new interfazPerfil(ctrl);
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_perfilActionPerformed
@@ -200,26 +202,28 @@ public class interfazPrincipal extends javax.swing.JFrame {
         //
     }//GEN-LAST:event_principalActionPerformed
 
+    //cargar oferta( en realidad solo necesita una funcion )
     private void oferta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oferta1ActionPerformed
-        interfazOferta b = new interfazOferta();
+        interfazOferta b = new interfazOferta(ctrl);
         b.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_oferta1ActionPerformed
 
     private void oferta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oferta2ActionPerformed
-        interfazOferta b = new interfazOferta();
+        interfazOferta b = new interfazOferta(ctrl);
         b.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_oferta2ActionPerformed
 
     private void oferta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oferta3ActionPerformed
-        interfazOferta b = new interfazOferta();
+        interfazOferta b = new interfazOferta(ctrl);
         b.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_oferta3ActionPerformed
 
+    //crear oferta
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        interfazEditarOferta c = new interfazEditarOferta();
+        interfazEditarOferta c = new interfazEditarOferta(ctrl);
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_crearActionPerformed
@@ -253,11 +257,11 @@ public class interfazPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new interfazPrincipal().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

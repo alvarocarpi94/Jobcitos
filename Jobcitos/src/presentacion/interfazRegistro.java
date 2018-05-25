@@ -16,10 +16,12 @@ public class interfazRegistro extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Controlador ctrl;
 	/**
      * Creates new form interfazRegistro
      */
-    public interfazRegistro() {
+    public interfazRegistro(Controlador ctrl) {
+    	this.ctrl = ctrl;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -146,18 +148,21 @@ public class interfazRegistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //formulario
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    //crear cuenta
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        interfazLogin d = new interfazLogin();
+        interfazLogin d = new interfazLogin(ctrl);
         d.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //cancelar 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        interfazLogin d = new interfazLogin();
+        interfazLogin d = new interfazLogin(ctrl);
         d.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -191,11 +196,11 @@ public class interfazRegistro extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new interfazRegistro().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

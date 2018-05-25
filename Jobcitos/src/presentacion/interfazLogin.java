@@ -17,10 +17,12 @@ public class interfazLogin extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Controlador ctrl;
 	/**
      * Creates new form interfaz
      */
-    public interfazLogin() {
+    public interfazLogin(Controlador ctrl) {
+    	this.ctrl = ctrl;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -77,7 +79,7 @@ public class interfazLogin extends javax.swing.JFrame {
         contrasenia.setBackground(new java.awt.Color(255, 255, 255));
         contrasenia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         contrasenia.setForeground(new java.awt.Color(255, 255, 255));
-        contrasenia.setText("Contrase�a: ");
+        contrasenia.setText("Contrase馻: ");
         getContentPane().add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         textouser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -89,7 +91,7 @@ public class interfazLogin extends javax.swing.JFrame {
         sesion.setBackground(new java.awt.Color(0, 0, 0));
         sesion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         sesion.setForeground(new java.awt.Color(255, 255, 255));
-        sesion.setText("Iniciar Sesión");
+        sesion.setText("Iniciar Sesi贸n");
         sesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sesionActionPerformed(evt);
@@ -111,7 +113,7 @@ public class interfazLogin extends javax.swing.JFrame {
         olvidar.setBackground(new java.awt.Color(0, 0, 0));
         olvidar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         olvidar.setForeground(new java.awt.Color(255, 255, 255));
-        olvidar.setText("¿Contraseña olvidada?");
+        olvidar.setText("驴Contrase帽a olvidada?");
         olvidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 olvidarActionPerformed(evt);
@@ -125,23 +127,27 @@ public class interfazLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //salir
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //loguear
     private void sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionActionPerformed
-        interfazPrincipal a = new interfazPrincipal();
+        interfazPrincipal a = new interfazPrincipal(ctrl);
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_sesionActionPerformed
 
+    //ir a la pagina de registro
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
-        interfazRegistro b = new interfazRegistro();
+        interfazRegistro b = new interfazRegistro(ctrl);
         b.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registroActionPerformed
 
+    //olvidada contrasenya
     private void olvidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_olvidarActionPerformed
         interfazAux c = new interfazAux();
         c.setVisible(true);
@@ -178,11 +184,11 @@ public class interfazLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new interfazLogin().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

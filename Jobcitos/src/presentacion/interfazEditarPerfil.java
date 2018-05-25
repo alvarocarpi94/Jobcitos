@@ -16,10 +16,12 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Controlador ctrl;
 	/**
      * Creates new form interfazEditarPerfil
      */
-    public interfazEditarPerfil() {
+    public interfazEditarPerfil(Controlador ctrl) {
+    	this.ctrl = ctrl;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -168,31 +170,33 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalActionPerformed
-        interfazPrincipal a = new interfazPrincipal();
+        interfazPrincipal a = new interfazPrincipal(ctrl);
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_principalActionPerformed
 
     private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
-        interfazPerfil a = new interfazPerfil();
+        interfazPerfil a = new interfazPerfil(ctrl);
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_perfilActionPerformed
 
+    //crear oferta
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        interfazEditarOferta c = new interfazEditarOferta();
+       this.ctrl.userButtonCrearOferta(tit, desc, loc, of, trab, cand, prAc, p);
+    	interfazEditarOferta c = new interfazEditarOferta(ctrl);
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_crearActionPerformed
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
-        interfazPerfil a = new interfazPerfil();
+        interfazPerfil a = new interfazPerfil(ctrl);
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_confirmarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        interfazPerfil a = new interfazPerfil();
+        interfazPerfil a = new interfazPerfil(ctrl);
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cancelarActionPerformed
@@ -226,11 +230,11 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new interfazEditarPerfil().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
