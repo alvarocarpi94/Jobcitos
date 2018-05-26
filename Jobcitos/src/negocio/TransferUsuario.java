@@ -16,7 +16,7 @@ public class TransferUsuario {
 	public TransferUsuario(String Id, String contrasenia, String nombre, String apellido, Integer[] mediaO,
 			Integer[] mediaT, String listaOfertas){
 		inicializar(Id, contrasenia, nombre, apellido, mediaO, mediaT);
-		if(listaOfertas !=null){
+		if(!listaOfertas.equals("null")){
 			for(int i = 0; i < listaOfertas.length(); i++){
 				this.listaOfertas.add(i, listaOfertas.split(";")[i]);
 			}

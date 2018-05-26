@@ -18,11 +18,12 @@ public class ImpDAOUsuario implements DAOUsuario{
 	private File file;
 	private static ImpDAOUsuario instancia = null;
 	
-	
+	//constructora privada de la clase
 	private ImpDAOUsuario(){
 		this.file = new File("Usuarios.txt");
 	}
 	
+	//patrón Singleton
 	public static ImpDAOUsuario getInstanceOfImpDAOUsuario(){
 		if(ImpDAOUsuario.instancia == null){
 			ImpDAOUsuario.instancia = new ImpDAOUsuario();
@@ -30,74 +31,62 @@ public class ImpDAOUsuario implements DAOUsuario{
 		return ImpDAOUsuario.instancia;
 	}
 	
+	//guarda un usuario
 	@Override
 	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {//usuario no tiene candidatos
-		//try{
-			File file = this.file;
-			try{
+		File file = this.file;
+		try{
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
-			//PrintWriter pw = new PrintWriter(bw);
 			String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
 			String linea = new String(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre() + " " + tUsuario.getApellido() + " "
 									+ tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
 			bw.write(linea);
-			
-			
-			/*pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre()  
-			+ " " + tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");*/
-			//pw.flush();
 			bw.close();
-			}catch(IOException e){
-				System.out.print("ESCORIA");
-			}
-			//bw.close();
-			//bw.flush();
-			//fw.close();
-		//}catch(Exception e){
-			
-		//}
+		}catch(IOException e){
+			System.out.print("ESCORIA");
+		}
 		return tUsuario;
 	}
-	
+	//cambia todos los campos del usuario menos email porque busca a traves de este campo
 	@Override
 	public void modificarUsuario(TransferUsuario tUsuario, boolean actualizar) {
-		 try {
-		       File File = this.file;
-		       File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
-		       BufferedReader br = new BufferedReader(new FileReader(File));
-		       PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-		       String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
-		       String line = null;
-		       while ((line = br.readLine()) != null) {
-		           if (!line.trim().equals(tUsuario.getId())) {
-		               pw.println(line);
-		               pw.flush();
-		           }else{
-		        	   if(actualizar){
-		        		   pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia() + " " + tUsuario.getNombre() + " " + 
-			            			tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador() + " " + lista);
-		        		   pw.flush();
-		        	   }
-		           }
-		        }
-		        pw.close();
-		        br.close();
-		        if (!File.delete()) {
-		            System.out.println("No se puede borrar el archivo.");
-		        }
-		        if (!tempFile.renameTo(File)){
-		            System.out.println("No se puede renombrar ela archivo.");
-		 
-		        }
-		    } catch (FileNotFoundException ex) {
-		        ex.printStackTrace();
-		    } catch (IOException ex) {
-		        ex.printStackTrace();
+		File File = this.file;
+		try{
+		    File tempFile = new File(this.file.getAbsolutePath() + ".tmp");
+		    BufferedReader br = new BufferedReader(new FileReader(this.file));
+		    PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		    String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
+		    String line = null;
+		    while ((line = br.readLine()) != null) {
+		        if (!line.split(" ")[0].equals(tUsuario.getId())) {
+		            pw.println(line);
+		            pw.flush();
+		        }else{
+		      	   if(actualizar){
+		      		   pw.println(tUsuario.getId() + " " + tUsuario.getContrasenia() + " " + tUsuario.getNombre() + " " + 
+			          			tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador() + " " + lista);
+		      		   pw.flush();
+		      	   }
+		       }
 		    }
+		    pw.close();
+		    br.close();
+		    if (!File.delete()) {
+		        System.out.println("No se puede borrar el archivo.");
+		    }
+		    if (!tempFile.renameTo(File)){
+		        System.out.println("No se puede renombrar ela archivo.");
+		    }
+		}catch (FileNotFoundException ex) {
+		    ex.printStackTrace();
+		}catch (IOException ex) {
+		    ex.printStackTrace();
+		}
 	}
+	
+	//muestra una lista de usuarios con los mismos nombres y apellidos
 	@Override
-	//Buscar por nombre y apellidos !!!!!!!!
 	public List<TransferUsuario> buscarUsuarios(String nombre, String apellido){
 		List<TransferUsuario> listaUsuarios = null;
 		try{
@@ -124,12 +113,12 @@ public class ImpDAOUsuario implements DAOUsuario{
 			}
 			bf.close();
 		}catch(Exception e){
-			System.out.println("El archivo no existe.");
 		}
 		return listaUsuarios;
 	}
+	
+	//muestra un usuario buscado por id
 	@Override
-	//Buscar por id!!!!!
 	public TransferUsuario buscarUsuario(String id){
 		TransferUsuario UsuarioT = null;
 		try{
@@ -137,15 +126,14 @@ public class ImpDAOUsuario implements DAOUsuario{
 			BufferedReader bf = new BufferedReader(archivo);
 			String mail = "";
 			String bfRead;
-			while((bfRead = bf.readLine()) != null){
-				mail = bfRead.split("")[0];
+			while(!(bfRead = bf.readLine()).equals(null)){
+				mail = bfRead.split(" ")[0];
 				if(mail.equals(id)){
 					Integer[] mediaOfertante = new Integer[2];
 					Integer[] mediaTrabajador = new Integer[2];
 					mediaOfertante[0] = Integer.parseInt(bfRead.split(" ")[4].split("-")[0]);
 					mediaOfertante[1] = Integer.parseInt(bfRead.split(" ")[4].split("-")[1]);
 					mediaTrabajador[0] = Integer.parseInt(bfRead.split(" ")[5].split("-")[0]);
-					mediaTrabajador[1] = Integer.parseInt(bfRead.split(" ")[5].split("-")[1]);
 					UsuarioT = new TransferUsuario(bfRead.split(" ")[0], bfRead.split(" ")[1], bfRead.split(" ")[2], bfRead.split(" ")[3],
 							mediaOfertante, mediaTrabajador, bfRead.split(" ")[6]);
 					bf.close();
@@ -153,10 +141,10 @@ public class ImpDAOUsuario implements DAOUsuario{
 			}
 			bf.close();
 		}catch(Exception e){
-			System.out.println("El archivo no existe.");
 		}
 		return UsuarioT;
 	}
+	
 	//Metodo privado que recorre el arraylist y lo convierte en un String
 	private String recorreListaOfertas(List<String> listaOfertas){
 		String cadena = "";
@@ -169,27 +157,5 @@ public class ImpDAOUsuario implements DAOUsuario{
 		}
 		return cadena;
 	}
-	//buscar usuario por email/IdUsuario
-	/*public TransferUsuario buscarUsuario(String usuario){
-		try{
-			TransferUsuario usuarioT = null;
-			FileReader archivo = new FileReader("Usuarios.txt");
-			BufferedReader bf = new BufferedReader(archivo);
-			String linea = "";
-			String bfRead;
-			while((bfRead = bf.readLine()) != null){
-				linea = bfRead.split(" ")[0];
-				if(linea.equals(usuario)){
-					usuarioT = new TransferUsuario(bfRead.split(" ")[0], bfRead.split(" ")[1], bfRead.split(" ")[2]+" "+bfRead.split(" ")[3]);
-					bf.close();
-					return usuarioT;
-				}
-			}
-			bf.close();
-		}catch(Exception e){
-			System.out.println("El archivo no existe.");
-		}
-		return null;
-	}*/
 
 }
