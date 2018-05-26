@@ -6,6 +6,7 @@ import integracion.ImpDAOOferta;
 
 import java.util.List;
 
+import excepciones.InconsistenciaDeDatos;
 import utils.MyStringUtils;
 import negocio.SA;
 import negocio.TransferOferta;
@@ -20,7 +21,7 @@ public class Controlador {
 		this.servicioAplicacion = new SA();
 	}
 	
-	public void userButtonCrearOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
+	public void userButtonCrearOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) throws InconsistenciaDeDatos {
 		this.servicioAplicacion.crearOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
 	}
 	
@@ -37,11 +38,11 @@ public class Controlador {
 	}
 	
 	public void userButtonContratarTrabajador(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p, String idTrabajador) {
-		this.servicioAplicacion.contratarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), idTrabajador);
+	//	this.servicioAplicacion.contratarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), idTrabajador);
 	}
 	
-	public void userActionEditarOferta(String idAntiguo, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){
-		this.servicioAplicacion.editarOferta(idAntiguo, new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
+	public void userActionEditarOferta(String idAntiguo, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) throws InconsistenciaDeDatos{
+		this.servicioAplicacion.editarOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
 	}
 	
 	/*	public void userButtonBuscarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){

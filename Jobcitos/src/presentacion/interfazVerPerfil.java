@@ -196,7 +196,7 @@ public class interfazVerPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_perfilActionPerformed
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        interfazEditarOferta c = new interfazEditarOferta(ctrl);
+    	interfazEditarOferta c = new interfazEditarOferta(ctrl);
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_crearActionPerformed

@@ -79,7 +79,7 @@ public class interfazLogin extends javax.swing.JFrame {
         contrasenia.setBackground(new java.awt.Color(255, 255, 255));
         contrasenia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         contrasenia.setForeground(new java.awt.Color(255, 255, 255));
-        contrasenia.setText("Contrase馻: ");
+        contrasenia.setText("Contraseña: ");
         getContentPane().add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         textouser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -113,7 +113,7 @@ public class interfazLogin extends javax.swing.JFrame {
         olvidar.setBackground(new java.awt.Color(0, 0, 0));
         olvidar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         olvidar.setForeground(new java.awt.Color(255, 255, 255));
-        olvidar.setText("驴Contrase帽a olvidada?");
+        olvidar.setText("¿Contraseña olvidada?");
         olvidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 olvidarActionPerformed(evt);
@@ -142,7 +142,7 @@ public class interfazLogin extends javax.swing.JFrame {
 
     //ir a la pagina de registro
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
-        interfazRegistro b = new interfazRegistro(ctrl);
+    	interfazRegistro b = new interfazRegistro(ctrl);
         b.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registroActionPerformed

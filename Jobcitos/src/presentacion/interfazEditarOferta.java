@@ -18,11 +18,19 @@ public class interfazEditarOferta extends javax.swing.JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controlador ctrl;
+	private String nombreOferta;
+	private String descr;
+	private double precio;
+	private String imagen;
 	/**
      * Creates new form interfazEditarOferta
      */
     public interfazEditarOferta(Controlador ctrl) {
     	this.ctrl = ctrl;
+    	this.nombreOferta = null;
+    	this.descr = null;
+    	this.precio = 0;
+    	this.imagen = null;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -89,7 +97,7 @@ public class interfazEditarOferta extends javax.swing.JFrame {
         getContentPane().add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
 
         descripcion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        descripcion.setText("Descripción");
+        descripcion.setText("Descripcion");
         getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
 
         descripcion2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -213,7 +221,7 @@ public class interfazEditarOferta extends javax.swing.JFrame {
 
     //crear oferta
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-       this.ctrl.userButtonCrearOferta(tit, desc, loc, of, trab, cand, prAc, p);
+       //this.ctrl.userButtonCrearOferta(tit, desc, loc, of, trab, cand, prAc, p);
     	interfazEditarOferta c = new interfazEditarOferta(ctrl);
         c.setVisible(true);
         this.setVisible(false);

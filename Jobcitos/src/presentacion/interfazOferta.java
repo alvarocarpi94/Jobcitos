@@ -229,7 +229,7 @@ public class interfazOferta extends javax.swing.JFrame {
 
     //apuntarse a una oferta
     private void jobcitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobcitoActionPerformed
-        interfazAux e = new interfazAux();
+    	interfazAux e = new interfazAux();
         e.setVisible(true);
     }//GEN-LAST:event_jobcitoActionPerformed
 

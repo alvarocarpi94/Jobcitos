@@ -183,7 +183,7 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
 
     //crear oferta
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-       this.ctrl.userButtonCrearOferta(tit, desc, loc, of, trab, cand, prAc, p);
+      // this.ctrl.userButtonCrearOferta(tit, desc, loc, of, trab, cand, prAc, p);
     	interfazEditarOferta c = new interfazEditarOferta(ctrl);
         c.setVisible(true);
         this.setVisible(false);
