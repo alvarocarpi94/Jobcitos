@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import negocio.TransferOferta;
-import utils.MyStringUtils;
+import util.MyStringUtils;
 
 public class ImpDAOOferta implements DAOOferta{
 	
@@ -35,7 +35,7 @@ public class ImpDAOOferta implements DAOOferta{
 		return ImpDAOOferta.instancia;
 	}
 	
-	public void cargarMapaOfertas() throws IOException{
+	public void cargar() throws IOException{
 		String[] datOfSep;
 		String ofertaFormatoTexto;
 		BufferedReader bf;
@@ -53,7 +53,7 @@ public class ImpDAOOferta implements DAOOferta{
 		
 	}
 
-	public void guardarMapaOfertasEnFichero() throws IOException {
+	public void guardar() throws IOException {
 		PrintWriter pw = new PrintWriter(new FileOutputStream(this.ficheroOfertas));
 		
 		for(String id : this.mapaOfertas.keySet()){
@@ -86,6 +86,22 @@ public class ImpDAOOferta implements DAOOferta{
 			return this.cargarTransferOferta(this.mapaOfertas.get(idTransferOferta));
 		
 		return null;
+	}
+	
+	@Override
+	public List<TransferOferta> buscarOfertas(String textoBusqueda){
+		TransferOferta to;
+		List<TransferOferta> listaTo = new ArrayList<TransferOferta>();
+		
+		for(String id : this.mapaOfertas.keySet()){
+
+			to = this.cargarTransferOferta(this.mapaOfertas.get(id));
+			
+			if(to.getTitulo().contains(textoBusqueda) || to.getDescripcion().contains(textoBusqueda));
+				listaTo.add(to);
+		}
+		
+		return listaTo;
 	}
 	
 	private TransferOferta cargarTransferOferta(String textoTransferOferta){
