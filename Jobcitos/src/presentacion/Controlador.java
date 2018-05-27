@@ -1,13 +1,8 @@
 package presentacion;
 
-import integracion.DAOOferta;
-import integracion.DAOUsuario;
-import integracion.ImpDAOOferta;
-
 import java.util.List;
 
-import excepciones.InconsistenciaDeDatos;
-import utils.MyStringUtils;
+import util.MyStringUtils;
 import negocio.SA;
 import negocio.TransferOferta;
 import negocio.TransferUsuario;
@@ -21,7 +16,7 @@ public class Controlador {
 		this.servicioAplicacion = new SA();
 	}
 	
-	public void userButtonCrearOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) throws InconsistenciaDeDatos {
+	public void userButtonCrearOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
 		this.servicioAplicacion.crearOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
 	}
 	
@@ -33,42 +28,41 @@ public class Controlador {
 		this.servicioAplicacion.valorarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), val);
 	}
 	
+	public void userActionValorarOfertante(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p, int val) {
+		this.servicioAplicacion.valorarOfertante(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), val);
+	}
+	
 	public void userButtonDespedirTrabajador(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
 		this.servicioAplicacion.despedirTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
 	}
 	
 	public void userButtonContratarTrabajador(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p, String idTrabajador) {
-	//	this.servicioAplicacion.contratarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), idTrabajador);
+		this.servicioAplicacion.contratarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), idTrabajador);
 	}
 	
-	public void userActionEditarOferta(String idAntiguo, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) throws InconsistenciaDeDatos{
-		this.servicioAplicacion.editarOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
+	public void userActionEditarOferta(String idAntiguo, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){
+		this.servicioAplicacion.editarOferta(idAntiguo, new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
 	}
 	
-	/*	public void userButtonBuscarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){
-		this.servicioAplicacion.buscarOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
-	}*
+	public void userButtonBuscarOferta(String textoBusqueda){
+		this.servicioAplicacion.buscarOferta(textoBusqueda);
+	}
 	
-	public void userButtonPagarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){
-		this.servicioAplicacion.pagarOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
+	public void userButtonPagarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc){
+		this.servicioAplicacion.pagarOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, true));
 	}
 	
 	public void userActionEditarPerfil(String nombre, String apellidos, String correo, String contrasena, Integer[] mediaO, Integer[] mediaT, String listaOfertas){
 		this.servicioAplicacion.editarPerfil(new TransferUsuario(correo, contrasena, nombre, apellidos, mediaO, mediaT, listaOfertas));
 	}
 	
-	public void userButtonRetirarseOferta(){
+	public void userButtonRetirarseOferta(TransferOferta tOferta, TransferUsuario tUser){
 		this.servicioAplicacion.retirarse(tOferta, tUser);
 	}
-	
-	public void userActionValorarOfertante() {
-		
-	}
 
-	public void userButtonDarseBaja(String idTransferUsuario){
-
-		this.servicioAplicacion.buscarOferta(tOferta, tUser);
-	} */
+	public void userButtonDarseBaja(TransferUsuario tUser){
+		this.servicioAplicacion.darseBaja(tUser);
+	} 
 	
 	public void userButtonCrearCuenta(String nombre, String apellidos, String correo, String contrasena){
 		TransferUsuario tu;
