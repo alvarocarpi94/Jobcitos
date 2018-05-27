@@ -14,9 +14,9 @@ public class Usuario {
 	
 
 	//metodos
-	public Usuario(TransferUsuario tuser){
+	public Usuario(String email, String contrasenia, String nombre, String Apellido, Integer[] mediaOfertante, Integer[] mediaTrabajador, String lista){
 		this.dUser=  ImpDAOUsuario.getInstanceOfImpDAOUsuario();
-		this.tUser= tuser;
+		this.tUser= new TransferUsuario(email, contrasenia, nombre, Apellido, mediaOfertante, mediaTrabajador, "null");
 	}
 	
 	public TransferOferta buscarOferta(String nombre){

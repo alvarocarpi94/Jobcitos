@@ -8,84 +8,123 @@ import integracion.DAOUsuario;
 import integracion.ImpDAOOferta;
 import integracion.ImpDAOUsuario;
 
+import excepciones.InconsistenciaDeDatos;
+import java.util.List;
+
+
 public class SA {
-	private File fUser;
-		
-	public SA(){
-		this.fUser=new File("Usuarios.txt");
-	}
+
 	
-	public void crearOferta(TransferOferta tOferta) {
-		Oferta oferta = new Oferta(tOferta);
-		oferta.registrar();
-	}
+	
+    public boolean crearOferta(String id, String nombreO, String desc, String lugar, String of,
+                                String trab, List<String> cand, double precio, boolean pagado){
+        Oferta oferta = new Oferta(id, nombreO, desc, lugar, of, trab, cand, precio, pagado);
+        if(oferta != null){
+            oferta.registrar();
+            return true;
+        }
+        return false;
+    }
 	
 	public void borrarOferta(TransferOferta tOferta) {
-		Oferta oferta = new Oferta(tOferta);
-		oferta.eliminar();
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.eliminar();
 	}
 	
 	public void valorarTrabajador(TransferOferta tOferta, int valoracion){
-		DAOUsuario dUser= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
-		TransferUsuario tUser=dUser.buscarUsuario(tOferta.getTrabajadorContratado());
-		tUser.setMediaTrabajador(valoracion);
-		dUser.modificarUsuario(tUser, true);
+		ImpDAOUsuario dUser=  ImpDAOUsuario.getInstanceOfImpDAOUsuario();
+		//Oferta oferta = new Oferta(tOferta);
+		//ImpDAOUsuario dUser= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
+		//oferta.valorarTrabajador(tUser, valoracion);
+		//tUser.setMediaTrabajador(valoracion);
+		//dUser.modificarUsuario(tUser, true);
+
 	}
 	
 	public void despedirTrabajador(TransferOferta tOferta){
-		Oferta oferta = new Oferta(tOferta);
-		oferta.eliminarTrabajador();//solo va a haber un trabajador asi que no hace falta pasar el trabajador
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.eliminarTrabajador();//solo va a haber un trabajador asi que no hace falta pasar el trabajador
 	}
 	
-	public void contratarTrabajador(TransferOferta tOferta, String idTrabajador){
-		Oferta oferta = new Oferta(tOferta);
-		oferta.contratarTrabajador(idTrabajador);
+	public void contratarTrabajador(TransferOferta tOferta,TransferUsuario tUser){
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.contratarTrabajador(tUser.getId());
 	}
 	
-	public void editarOferta(String idAntiguo, TransferOferta tOferta){
-		Oferta oferta = new Oferta(tOferta);
-		oferta.modificar(tOferta);
+
+	public void editarOferta(TransferOferta tOferta) throws InconsistenciaDeDatos{
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.modificar(tOferta);
 	}
 	public void editarPerfil(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser);
-		user.editarPerfil(tUser);
+		//Usuario user = new Usuario(tUser);
+		//user.editarPerfil(tUser);
 	}
 	
 	public void pagarOferta(TransferOferta tOferta){
-		Oferta oferta = new Oferta(tOferta);
-		oferta.pagarAlTrabajador();
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.pagarAlTrabajador();
 	}
 	
 	public void aceptarOferta(String trab,TransferOferta tOferta){
-		Oferta oferta = new Oferta(tOferta);
-		oferta.agregarCandidato(trab);
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.agregarCandidato(trab);
 	}
 	
-	public void retirarse(TransferOferta tOferta, TransferUsuario tUser){
-		Oferta oferta = new Oferta(tOferta);
-		oferta.eliminarCandidato(tUser.getId());
+
+	public void retirarse(TransferOferta tOferta,TransferUsuario tUser){
+		//Oferta oferta = new Oferta(tOferta);
+		//oferta.eliminarCandidato(tUser.getNombre());
 	}
 	
 	public void valorarOfertante(TransferOferta tOferta, int valoracion){
-		DAOUsuario dUser=  ImpDAOUsuario.getInstanceOfImpDAOUsuario();
+		ImpDAOUsuario dUser= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
+		//Oferta oferta = new Oferta(tOferta);
 		TransferUsuario tUser=dUser.buscarUsuario(tOferta.getOfertante());
+		//oferta.valorarOfertante(tUser,valoracion);
 		tUser.setMediaOfertante(valoracion);
 		dUser.modificarUsuario(tUser, true);
 	}
 	
-	public List<TransferOferta> buscarOferta(String textoBusqueda){
-		DAOOferta daoOferta = ImpDAOOferta.getInstanceOfImplDAOOferta();
-		return daoOferta.buscarOfertas(textoBusqueda);
+
+	public void buscarOferta(TransferOferta tOferta,TransferUsuario tUser){
+		String nombre = tOferta.getTitulo();
+		//Usuario user = new Usuario(tUser);
+		//user.buscarOferta(nombre);
 	}
 	
 	public void darseBaja(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser);
-		user.darseBaja();
+
+
+		//Usuario user = new Usuario(tUser);
+		//user.darseBaja();
+
 	}
 	
-	public void crearCuenta(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser);
-			user.crearCuenta();
+	public boolean crearCuenta(String email, String contrasenia, String Nombre, String Apellido){
+            if(!buscarUsuario(email, contrasenia)){    
+                Integer[] mediaOfertante = new Integer[2];
+		Integer[] mediaTrabajador = new Integer[2];
+		for(int i = 0; i < 2; i++){
+			mediaOfertante[i] = 0;
+			mediaTrabajador[i] = 0;
+		}
+                Usuario user = new Usuario(email, contrasenia, Nombre, Apellido, mediaOfertante, mediaTrabajador, "null");
+		user.crearCuenta();
+                return true;
+            }
+            return false;
 	}
 	
+        public boolean buscarUsuario(String email, String contrasenia){
+            ImpDAOUsuario daoUsuario= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
+            TransferUsuario tUsuario = daoUsuario.buscarUsuario(email);
+            if(tUsuario != null){
+                if(tUsuario.getId().equals(email) && tUsuario.getContrasenia().equals(contrasenia)){
+                    return true;
+                }
+            }
+            return false;
+        }
+        
 }

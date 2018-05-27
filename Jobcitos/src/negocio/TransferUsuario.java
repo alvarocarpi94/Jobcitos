@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransferUsuario {
 	
@@ -8,8 +9,8 @@ public class TransferUsuario {
 	private String contrasenia;
 	private String nombre;
 	private String apellido;
-	private Integer[] mediaOfertante; //mediao-nºvotos
-	private Integer[] mediaTrabajador;//mediaT-nºvotos
+	private Integer[] mediaOfertante; //mediao-nvotos
+	private Integer[] mediaTrabajador;//mediaT-nvotos
 	private ArrayList<String> listaOfertas;
 	
 	//Constructor Si se pasa un String por lista de Ofertas
@@ -24,7 +25,7 @@ public class TransferUsuario {
 	}
 	//Constructor Si se pasa un ArrayList para la lista de ofertas
 	public TransferUsuario(String Id, String contrasenia, String nombre, String apellido, Integer[] mediaO,
-			Integer[] mediaT, ArrayList<String> listaOfertas){
+			Integer[] mediaT, List<String> listaOfertas){
 		inicializar(Id, contrasenia, nombre, apellido, mediaO, mediaT);
 		if(listaOfertas !=null){
 			for(int i = 0; i < listaOfertas.size(); i++){
@@ -78,12 +79,12 @@ public class TransferUsuario {
 		return listaOfertas;
 	}
 	//muestra la media del ofertante
-	public int getMediaOfertante() {
-		return mediaOfertante[0];
+	public Integer[] getMediaOfertante() {
+		return mediaOfertante;
 	}
 	//muestra la media del trabajador
-	public int getMediaTrabajador(){
-		return mediaTrabajador[0];
+	public Integer[] getMediaTrabajador(){
+		return mediaTrabajador;
 	}
 	//cambia el nombre
 	public void setNombre(String nombre){
@@ -114,18 +115,18 @@ public class TransferUsuario {
 		} 
 		return ok;
 	}
-	//Añade el id de una oferta a la lista
+	//Anade el id de una oferta a la lista
 	public void setlistaOfertas(ArrayList<String> lista) {
 		for(int i = 0; i < lista.size(); i++){
 			listaOfertas.set(i, lista.get(i));
 		}
 	}
-	//Añade la media calculada y suma 1 al nº de votos
+	//Anade la media calculada y suma 1 al n de votos
 	public void setMediaOfertante(int suma) {
 		mediaOfertante[0] += suma;
 		mediaOfertante[1] += 1;
 	}
-	//Añade la media calculada y suma 1 al nº de votos
+	//Anade la media calculada y suma 1 al n de votos
 	public void setMediaTrabajador(int suma) {
 		mediaTrabajador[0] += suma;
 		mediaTrabajador[1] += 1;

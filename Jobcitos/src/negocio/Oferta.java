@@ -3,15 +3,17 @@ package negocio;
 
 import integracion.DAOOferta;
 import integracion.ImpDAOOferta;
+import java.util.List;
 
 public class Oferta {
 	
 	private DAOOferta dao;
 	private TransferOferta transOfer;
 	
-	public Oferta(TransferOferta to) {
+	public Oferta(String id, String nombreO, String desc, String lugar, String of,
+                                String trab, List<String> cand, double precio, boolean pagado) {
 		this.dao = ImpDAOOferta.getInstanceOfImplDAOOferta();
-		this.transOfer = to;
+		this.transOfer = new TransferOferta(id, nombreO, desc, lugar, of, trab, cand, precio, pagado);
 	}
 	
 	public TransferOferta obtenerTransferDeOferta() {
@@ -19,7 +21,10 @@ public class Oferta {
 	}
 	
 	public void registrar() {
-		this.dao.insertarOferta(this.transOfer);
+            TransferOferta ofAux = this.dao.obtenerOferta(this.transOfer.getId());
+            if(ofAux != null){
+            	this.dao.insertarOferta(this.transOfer);
+            }
 	}
 	
 	public void eliminar() {
