@@ -17,13 +17,13 @@ public class ImpDAOUsuario implements DAOUsuario{
 	
 	private File file;
 	private static ImpDAOUsuario instancia = null;
-	
+	String ruta = "Usuarios.txt";
 	//constructora privada de la clase
 	private ImpDAOUsuario(){
-		this.file = new File("Usuarios.txt");
+            this.file = new File(ruta);
 	}
 	
-	//patrón Singleton
+	//patron Singleton
 	public static ImpDAOUsuario getInstanceOfImpDAOUsuario(){
 		if(ImpDAOUsuario.instancia == null){
 			ImpDAOUsuario.instancia = new ImpDAOUsuario();
@@ -36,11 +36,15 @@ public class ImpDAOUsuario implements DAOUsuario{
 	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {//usuario no tiene candidatos
 		File file = this.file;
 		try{
+                        if(!file.exists()){
+                            System.out.println("El fichero no existe");
+                        }
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
 			String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
 			String linea = new String(tUsuario.getId() + " " + tUsuario.getContrasenia()+ " " + tUsuario.getNombre() + " " + tUsuario.getApellido() + " "
-									+ tUsuario.getMediaOfertante() + " " + tUsuario.getMediaTrabajador()+ " " + lista +  "\n");
+						+ tUsuario.getMediaOfertante()[0]+"-"+tUsuario.getMediaOfertante()[1] + " " + tUsuario.getMediaTrabajador()[0]+
+                                                "-" + tUsuario.getMediaTrabajador()[1]+ " "+ lista +  "\n");
 			bw.write(linea);
 			bw.close();
 		}catch(IOException e){
@@ -89,6 +93,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 	@Override
 	public List<TransferUsuario> buscarUsuarios(String nombre, String apellido){
 		List<TransferUsuario> listaUsuarios = null;
+                File file = this.file;
 		try{
 			FileReader archivo = new FileReader(file);
 			BufferedReader bf = new BufferedReader(archivo);
@@ -121,6 +126,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 	@Override
 	public TransferUsuario buscarUsuario(String id){
 		TransferUsuario UsuarioT = null;
+                File file = this.file;
 		try{
 			FileReader archivo = new FileReader(file);
 			BufferedReader bf = new BufferedReader(archivo);
@@ -134,9 +140,10 @@ public class ImpDAOUsuario implements DAOUsuario{
 					mediaOfertante[0] = Integer.parseInt(bfRead.split(" ")[4].split("-")[0]);
 					mediaOfertante[1] = Integer.parseInt(bfRead.split(" ")[4].split("-")[1]);
 					mediaTrabajador[0] = Integer.parseInt(bfRead.split(" ")[5].split("-")[0]);
+                                        mediaTrabajador[1] = Integer.parseInt(bfRead.split(" ")[5].split("-")[1]);
 					UsuarioT = new TransferUsuario(bfRead.split(" ")[0], bfRead.split(" ")[1], bfRead.split(" ")[2], bfRead.split(" ")[3],
 							mediaOfertante, mediaTrabajador, bfRead.split(" ")[6]);
-					bf.close();
+					//bf.close();
 				}
 			}
 			bf.close();
@@ -147,7 +154,7 @@ public class ImpDAOUsuario implements DAOUsuario{
 	
 	//Metodo privado que recorre el arraylist y lo convierte en un String
 	private String recorreListaOfertas(List<String> listaOfertas){
-		String cadena = "";
+		String cadena = "null";
 		for(int i = 0; i< listaOfertas.size(); i++){
 			if(i < listaOfertas.size() - 1){
 				cadena = cadena + listaOfertas.get(i) + ";";
