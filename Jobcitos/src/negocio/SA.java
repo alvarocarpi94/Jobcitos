@@ -88,6 +88,12 @@ public class SA {
 		dUser.modificarUsuario(tUser, true);
 	}
 	
+	
+	  public TransferOferta buscarOferta(String id){
+          ImpDAOOferta daoOfeta= ImpDAOOferta.getInstanceOfImplDAOOferta();
+          TransferOferta tOferta = daoOfeta.obtenerOferta(id);
+          return tOferta;
+      }
 
 	public void buscarOferta(TransferOferta tOferta,TransferUsuario tUser){
 		String nombre = tOferta.getTitulo();

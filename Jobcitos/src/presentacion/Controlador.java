@@ -17,15 +17,16 @@ import negocio.Usuario;
 public class Controlador {
 	
 	private SA servicioAplicacion;
-        private interfazEditarOferta eOferta;
-        private interfazEditarPerfil ePerfil;
-        private interfazLogin login;
-        private interfazOferta oferta;
-        private interfazLogin perfil;
+    private interfazEditarOferta eOferta;
+    private interfazEditarPerfil ePerfil;
+    private interfazLogin login;
+    private interfazOferta oferta;
+    private interfazLogin perfil;
 	private interfazPrincipal principal;
 	private interfazRegistro registro;
-        private interfazVerPerfil vPerfil;
-        private String usuario;
+    private interfazVerPerfil vPerfil;
+    private String usuario;
+    private String idOfer;
         
 	public Controlador(interfazLogin v, SA sa){
             this.login = v;
@@ -54,11 +55,12 @@ public class Controlador {
               //  CrearOferta();
             }
             
-	}
-	
-	public void creaOfertaAction(ActionEvent evento){	
-			//CrearOferta();
-	}
+	}	
+	public void CrearOferta(){
+		this.idOfer = usuario+eOferta.getName();
+		this.servicioAplicacion.crearOferta( idOfer, eOferta.getName(), eOferta.getDescripcion(), eOferta.getLugar(), this.usuario,
+	                                                    "", null,10.00, false);
+		}
 	
         public void login(){
             if(this.servicioAplicacion.buscarUsuario(login.getTextoUsuario(), login.getTextoContrasenia())){
@@ -148,6 +150,11 @@ public class Controlador {
 
 	}
 
+	public TransferOferta tOferta(){
+		TransferOferta tofer= this.servicioAplicacion.buscarOferta(idOfer);
+		return tofer;
+	}
+	
 	public TransferUsuario tUsuario(){
 		TransferUsuario tuser= this.servicioAplicacion.buscarTUsuario(this.usuario);
 		return tuser;
