@@ -36,9 +36,9 @@ public class ImpDAOUsuario implements DAOUsuario{
 	public TransferUsuario guardarUsuario(TransferUsuario tUsuario) {//usuario no tiene candidatos
 		File file = this.file;
 		try{
-                        if(!file.exists()){
-                            System.out.println("El fichero no existe");
-                        }
+           if(!file.exists()){
+        	   System.out.println("El fichero no existe");
+            }
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
 			String lista = this.recorreListaOfertas(tUsuario.getlistaOfertas());
