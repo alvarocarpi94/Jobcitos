@@ -80,13 +80,13 @@ public class interfazLogin extends javax.swing.JFrame{
         usuario.setBackground(new java.awt.Color(255, 255, 255));
         usuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         usuario.setForeground(new java.awt.Color(255, 255, 255));
-        usuario.setText("Usuario: ");
+        usuario.setText("Correo: ");
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         contrasenia.setBackground(new java.awt.Color(255, 255, 255));
         contrasenia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         contrasenia.setForeground(new java.awt.Color(255, 255, 255));
-        contrasenia.setText("Contraseña: ");
+        contrasenia.setText("Contrasenia: ");
         getContentPane().add(contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         textouser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -103,7 +103,7 @@ public class interfazLogin extends javax.swing.JFrame{
         sesion.setBackground(new java.awt.Color(0, 0, 0));
         sesion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         sesion.setForeground(new java.awt.Color(255, 255, 255));
-        sesion.setText("Iniciar Sesión");
+        sesion.setText("Iniciar Sesion");
         sesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sesionActionPerformed(evt);
@@ -125,7 +125,7 @@ public class interfazLogin extends javax.swing.JFrame{
         olvidar.setBackground(new java.awt.Color(0, 0, 0));
         olvidar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         olvidar.setForeground(new java.awt.Color(255, 255, 255));
-        olvidar.setText("¿Contraseña olvidada?");
+        olvidar.setText("�Contrasenia olvidada?");
         olvidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 olvidarActionPerformed(evt);
