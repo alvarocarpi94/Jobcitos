@@ -80,7 +80,7 @@ public class interfazPerfil extends javax.swing.JFrame {
         getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nombre.setText("NOMBRE OFERTANTE");
+        nombre.setText(ctrl.tUsuario().getNombre());
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
         oferta.setBackground(new java.awt.Color(0, 204, 0));

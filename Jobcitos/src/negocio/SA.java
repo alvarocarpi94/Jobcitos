@@ -129,4 +129,10 @@ public class SA {
             return false;
         }
         
+        public TransferUsuario buscarTUsuario(String email){
+            ImpDAOUsuario daoUsuario= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
+            TransferUsuario tUsuario = daoUsuario.buscarUsuario(email);
+           
+            return tUsuario;
+        }
 }

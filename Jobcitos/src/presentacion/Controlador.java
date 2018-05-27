@@ -147,4 +147,9 @@ public class Controlador {
 		interfazPerfil perfil = new interfazPerfil(this);
 
 	}
+
+	public TransferUsuario tUsuario(){
+		TransferUsuario tuser= this.servicioAplicacion.buscarTUsuario(this.usuario);
+		return tuser;
+	}
 }
