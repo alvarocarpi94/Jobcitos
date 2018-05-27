@@ -220,7 +220,7 @@ public class interfazOferta extends javax.swing.JFrame {
     }//GEN-LAST:event_chatActionPerformed
 
     private void jobcitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobcitoActionPerformed
-        this.ctrl.actionContratar(evt);
+        //this.ctrl.actionContratar(evt);
     }//GEN-LAST:event_jobcitoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

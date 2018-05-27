@@ -118,7 +118,7 @@ public class interfazPerfil extends javax.swing.JFrame {
         candidatos.setContentAreaFilled(false);
         candidatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //candidatosActionPerformed(evt);
+                candidatosActionPerformed(evt);
             }
         });
         getContentPane().add(candidatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 40, 30));
@@ -189,6 +189,11 @@ public class interfazPerfil extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/pago.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 40, 30));
 
         principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/tie.png"))); // NOI18N
@@ -276,6 +281,10 @@ public class interfazPerfil extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_principalActionPerformed
     
+    private void candidatosActionPerformed(java.awt.event.ActionEvent evt){
+    
+    }
+    
     //editar oferta
     private void ofertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ofertaActionPerformed
         interfazEditarOferta c = new interfazEditarOferta(ctrl);
@@ -341,6 +350,10 @@ public class interfazPerfil extends javax.swing.JFrame {
         interfazAux e = new interfazAux();
         e.setVisible(true);
     }//GEN-LAST:event_cerrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

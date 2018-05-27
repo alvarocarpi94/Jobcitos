@@ -39,21 +39,18 @@ public class interfazEditarOferta extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         editnombre = new javax.swing.JTextField();
         editsalario = new javax.swing.JTextField();
         editdatos = new javax.swing.JTextField();
         crear = new javax.swing.JButton();
         descripcion = new javax.swing.JLabel();
-        descripcion2 = new javax.swing.JButton();
-        nombre2 = new javax.swing.JButton();
-        salario = new javax.swing.JButton();
+        salario = new javax.swing.JLabel();
+        lugar = new javax.swing.JLabel();
         principal = new javax.swing.JButton();
         perfil = new javax.swing.JButton();
         confirmar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
-        datos = new javax.swing.JButton();
         buscar1 = new javax.swing.JTextField();
         empresa = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
@@ -73,15 +70,9 @@ public class interfazEditarOferta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 290, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 255));
-        jButton1.setText("Añadir imagen");
-        jButton1.setContentAreaFilled(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
         getContentPane().add(editnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 110, -1));
-        getContentPane().add(editsalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 90, -1));
-        getContentPane().add(editdatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 90, -1));
+        getContentPane().add(editsalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 150, -1));
+        getContentPane().add(editdatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 150, -1));
 
         crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/add.png"))); // NOI18N
         crear.setContentAreaFilled(false);
@@ -96,28 +87,13 @@ public class interfazEditarOferta extends javax.swing.JFrame {
         descripcion.setText("Descripción");
         getContentPane().add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
 
-        descripcion2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        descripcion2.setForeground(new java.awt.Color(0, 0, 255));
-        descripcion2.setText("Editar");
-        descripcion2.setContentAreaFilled(false);
-        descripcion2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descripcion2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(descripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 233, -1, 30));
+        salario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        salario.setText("Salario (euros)");
+        getContentPane().add(salario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, 20));
 
-        nombre2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        nombre2.setForeground(new java.awt.Color(0, 0, 255));
-        nombre2.setText("Editar nombre");
-        nombre2.setContentAreaFilled(false);
-        getContentPane().add(nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, 20));
-
-        salario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        salario.setForeground(new java.awt.Color(0, 0, 255));
-        salario.setText("Editar salario");
-        salario.setContentAreaFilled(false);
-        getContentPane().add(salario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        lugar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lugar.setText("Lugar");
+        getContentPane().add(lugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 20));
 
         principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/tie.png"))); // NOI18N
         principal.setContentAreaFilled(false);
@@ -164,12 +140,6 @@ public class interfazEditarOferta extends javax.swing.JFrame {
         });
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -1, 70, 50));
 
-        datos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        datos.setForeground(new java.awt.Color(0, 0, 255));
-        datos.setText("Editar datos");
-        datos.setContentAreaFilled(false);
-        getContentPane().add(datos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-
         buscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscar1ActionPerformed(evt);
@@ -199,10 +169,6 @@ public class interfazEditarOferta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void descripcion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcion2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descripcion2ActionPerformed
 
     private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
         // TODO add your handling code here:
@@ -250,23 +216,20 @@ public class interfazEditarOferta extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JButton confirmar;
     private javax.swing.JButton crear;
-    private javax.swing.JButton datos;
     private javax.swing.JLabel descripcion;
-    private javax.swing.JButton descripcion2;
     private javax.swing.JTextField editdatos;
     private javax.swing.JTextField editnombre;
     private javax.swing.JTextField editsalario;
     private javax.swing.JLabel empresa;
     private javax.swing.JLabel fondo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lugar;
     private javax.swing.JLabel menu1;
     private javax.swing.JLabel menu2;
     private javax.swing.JLabel nombre;
-    private javax.swing.JButton nombre2;
     private javax.swing.JButton perfil;
     private javax.swing.JButton principal;
-    private javax.swing.JButton salario;
+    private javax.swing.JLabel salario;
     // End of variables declaration//GEN-END:variables
 }
