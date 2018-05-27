@@ -1,6 +1,5 @@
 package negocio;
 
-import java.io.File;
 import java.util.List;
 
 import integracion.DAOOferta;

@@ -12,7 +12,6 @@ import utils.MyStringUtils;
 import negocio.SA;
 import negocio.TransferOferta;
 import negocio.TransferUsuario;
-import negocio.Usuario;
 
 public class Controlador {
 	
