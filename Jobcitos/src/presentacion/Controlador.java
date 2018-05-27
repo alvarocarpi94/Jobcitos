@@ -51,14 +51,16 @@ public class Controlador {
                 this.eOferta.setVisible(true);
                 this.principal.setVisible(false);
             }else if(comando.equals("confirmar")){
-              //  CrearOferta();
+                CrearOferta();
             }
             
 	}	
 	public void CrearOferta(){
 		this.idOfer = usuario+eOferta.getName();
 		this.servicioAplicacion.crearOferta( idOfer, eOferta.getName(), eOferta.getDescripcion(), eOferta.getLugar(), this.usuario,
-	                                                    "", null,10.00, false);
+	                                                    "", null,Double.parseDouble(eOferta.getSalario()), false);
+		 this.oferta = new interfazOferta(this);
+	     this.principal.setVisible(true);
 		}
 	
         public void login(){
