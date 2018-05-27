@@ -70,8 +70,20 @@ public class interfazEditarOferta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 290, -1));
+
+        editnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editnombreActionPerformed(evt);
+            }
+        });
         getContentPane().add(editnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 110, -1));
         getContentPane().add(editsalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 150, -1));
+
+        editdatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editdatosActionPerformed(evt);
+            }
+        });
         getContentPane().add(editdatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 150, -1));
 
         crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/add.png"))); // NOI18N
@@ -185,9 +197,7 @@ public class interfazEditarOferta extends javax.swing.JFrame {
     }//GEN-LAST:event_crearActionPerformed
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
-        interfazOferta b = new interfazOferta(ctrl);
-        b.setVisible(true);
-        this.setVisible(false);
+        this.ctrl.actionPerformed(evt);
     }//GEN-LAST:event_confirmarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
@@ -208,6 +218,30 @@ public class interfazEditarOferta extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_principalActionPerformed
 
+    private void editnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editnombreActionPerformed
+
+    private void editdatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editdatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editdatosActionPerformed
+    
+    
+    public String getLugar(){
+        return this.editdatos.getText();
+    }
+   
+    public String getSalario(){
+        return this.editsalario.getText();
+    }
+    
+    public String getNombreOferta(){
+        return this.editnombre.getText();
+    }
+    
+    public String getDescripcion(){
+        return this.jTextArea1.getText();
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
