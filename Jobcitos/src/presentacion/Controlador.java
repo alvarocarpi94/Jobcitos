@@ -59,6 +59,10 @@ public class Controlador {
 	public void creaOfertaAction(ActionEvent evento){	
 			CrearOferta();
 	}
+	public void actionContratar(ActionEvent evento){
+
+		userButtonContratarTrabajador("Nombre oferta", usuario, usuario, usuario, usuario, null, 0, false, usuario);
+	}
 	
         public void login(){
             if(this.servicioAplicacion.buscarUsuario(login.getTextoUsuario(), login.getTextoContrasenia())){
@@ -105,7 +109,9 @@ public class Controlador {
 	}
 	
 	public void userButtonContratarTrabajador(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p, String idTrabajador) {
-		//this.servicioAplicacion.contratarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), idTrabajador);
+		String id = MyStringUtils.crearIdCompuesto(of, tit);
+		
+		this.servicioAplicacion.contratarTrabajador(id, tit, desc, loc, of, trab, cand, prAc, p, this.usuario);
 	}
 	
 	public void userActionEditarOferta(String idAntiguo, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){
