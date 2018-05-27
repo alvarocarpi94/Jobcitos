@@ -18,9 +18,9 @@ public class interfazEditarOferta extends javax.swing.JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controlador ctrl;
-	private String nombreOferta;
-	private String descr;
-	private double precio;
+	public static String nombreOferta;
+	public static String descr;
+	public static double precio;
 	private String imagen;
 	/**
      * Creates new form interfazEditarOferta
