@@ -40,7 +40,6 @@ public class SA {
 		Oferta oferta = new Oferta(tOferta);
 		oferta.modificar(tOferta);
 	}
-	
 	public void editarPerfil(TransferUsuario tUser){
 		Usuario user = new Usuario(tUser);
 		user.editarPerfil(tUser);

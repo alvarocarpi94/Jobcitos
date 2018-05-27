@@ -90,7 +90,7 @@ public class interfazEditarPerfil extends javax.swing.JFrame {
         ciudad.setText("CIUDAD");
         getContentPane().add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
-        jCheckBox1.setText("Acepto que mi n√∫mero sea visible p√∫blicamente");
+        jCheckBox1.setText("Acepto que mi n®≤mero sea visible p®≤blicamente");
         getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/tie.png"))); // NOI18N
