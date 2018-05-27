@@ -20,7 +20,7 @@ public class interfazRegistro extends javax.swing.JFrame {
 	private String nombre;
 	private String apellidos;
 	private String nikcname;
-	private char[] contrasenya1;
+	private String contrasenya1;
 	private String correo;
 	private String telf;
 	private String ciudad;
@@ -61,13 +61,13 @@ public class interfazRegistro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -115,7 +115,6 @@ public class interfazRegistro extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo.png"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 150, -1));
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,6 +126,7 @@ public class interfazRegistro extends javax.swing.JFrame {
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 80, -1));
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 160, -1));
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 210, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 150, -1));
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 70, -1));
         
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +161,7 @@ public class interfazRegistro extends javax.swing.JFrame {
             }
         });
         
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
        	 public void actionPerformed(java.awt.event.ActionEvent evt) {
            	 TextField6Clave1(evt);
            }
@@ -220,7 +220,7 @@ public class interfazRegistro extends javax.swing.JFrame {
     }
     
     private void  TextField6Clave1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-    	 this.contrasenya1 = this.jPasswordField1.getPassword();
+    	 this.contrasenya1 = this.jTextField6.getText();
     }
     
     //crear cuenta
@@ -293,6 +293,7 @@ public class interfazRegistro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

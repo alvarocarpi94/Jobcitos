@@ -26,7 +26,7 @@ public class SA {
 	}
 	
 	public void valorarTrabajador(TransferOferta tOferta, int valoracion){
-		DAOUsuario dUser= new ImpDAOUsuario(fUser);
+		DAOUsuario dUser= ImpDAOUsuario.getInstanceOfImpDAOUsuario();
 		TransferUsuario tUser=dUser.buscarUsuario(tOferta.getTrabajadorContratado());
 		tUser.setMediaTrabajador(valoracion);
 		dUser.modificarUsuario(tUser, true);
@@ -34,7 +34,7 @@ public class SA {
 	
 	public void despedirTrabajador(TransferOferta tOferta){
 		Oferta oferta = new Oferta(tOferta);
-		oferta.despedirTrabajadorContratado();//solo va a haber un trabajador asi que no hace falta pasar el trabajador
+		oferta.eliminarTrabajador();//solo va a haber un trabajador asi que no hace falta pasar el trabajador
 	}
 	
 	public void contratarTrabajador(TransferOferta tOferta, String idTrabajador){
@@ -44,10 +44,10 @@ public class SA {
 	
 	public void editarOferta(String idAntiguo, TransferOferta tOferta){
 		Oferta oferta = new Oferta(tOferta);
-		oferta.modificar(idAntiguo, tOferta);
+		oferta.modificar(tOferta);
 	}
 	public void editarPerfil(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 		user.editarPerfil(tUser);
 	}
 	
@@ -67,7 +67,7 @@ public class SA {
 	}
 	
 	public void valorarOfertante(TransferOferta tOferta, int valoracion){
-		DAOUsuario dUser= new ImpDAOUsuario(fUser);
+		DAOUsuario dUser=  ImpDAOUsuario.getInstanceOfImpDAOUsuario();
 		TransferUsuario tUser=dUser.buscarUsuario(tOferta.getOfertante());
 		tUser.setMediaOfertante(valoracion);
 		dUser.modificarUsuario(tUser, true);
@@ -79,12 +79,12 @@ public class SA {
 	}
 	
 	public void darseBaja(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 		user.darseBaja();
 	}
 	
 	public void crearCuenta(TransferUsuario tUser){
-		Usuario user = new Usuario(tUser,fUser);
+		Usuario user = new Usuario(tUser);
 			user.crearCuenta();
 	}
 	
