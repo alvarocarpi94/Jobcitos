@@ -1,9 +1,13 @@
 package integracion;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -14,20 +18,20 @@ import java.util.List;
 import java.util.Map;
 
 import negocio.TransferOferta;
+import negocio.TransferUsuario;
 import utils.MyStringUtils;
 
 public class ImpDAOOferta implements DAOOferta{
 	
-	private static ImpDAOOferta instancia = null;
-	private static String nombreFichero = "Ofertas.txt";
 	private File ficheroOfertas;
-	private Map<String, String> mapaOfertas;
-	
-	private ImpDAOOferta() {
-		this.ficheroOfertas = new File(ImpDAOOferta.nombreFichero);
-		this.mapaOfertas = new HashMap<String, String>();
+	private static ImpDAOOferta instancia = null;
+	String ruta = "Ofertas.txt";
+	//constructora privada de la clase
+	private ImpDAOOferta(){
+            this.ficheroOfertas = new File(ruta);
 	}
 	
+
 	public static ImpDAOOferta getInstanceOfImplDAOOferta() {
 		if(ImpDAOOferta.instancia == null)
 			ImpDAOOferta.instancia = new ImpDAOOferta();
@@ -35,141 +39,99 @@ public class ImpDAOOferta implements DAOOferta{
 		return ImpDAOOferta.instancia;
 	}
 	
-	public void cargar() throws IOException{
-		String[] datOfSep;
-		String ofertaFormatoTexto;
-		BufferedReader bf;
-		
-		if(!this.ficheroOfertas.createNewFile() && !this.ficheroFuenteVacio()) {
-			bf = new BufferedReader(new InputStreamReader(new FileInputStream(this.ficheroOfertas)));
-			
-			while((ofertaFormatoTexto = bf.readLine()) != null){
-				datOfSep = ofertaFormatoTexto.split(MyStringUtils.getCadenaSeparadora());
-				this.mapaOfertas.put(MyStringUtils.crearIdCompuesto(datOfSep[3], datOfSep[0]), ofertaFormatoTexto);
+	
+
+	public TransferOferta guardarOferta(TransferOferta tOferta) {//usuario no tiene candidatos
+		File file = this.ficheroOfertas;
+		try{
+           if(!file.exists()){
+        	   System.out.println("El fichero no existe");
+            }
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+			String lista = this.recorreListaCandi(tOferta.getCandidatos());
+			String linea = new String(tOferta.getId() + " " + tOferta.getTitulo() + " " + tOferta.getDescripcion()+ " " + 
+     				 tOferta.getLocalizacion() + " " + tOferta.getOfertante() + " " +tOferta.getTrabajadorContratado()+" "+
+    				   +tOferta.getPrecioAcordado()+" "+tOferta.getPagado()+lista+ "\n");
+			bw.write(linea);
+			bw.close();
+		}catch(IOException e){
+			System.out.print("ESCORIA");
+		}
+		return tOferta;
+	}
+	
+	public void modificarOferta(TransferOferta tOferta, boolean actualizar) {
+		File File = this.ficheroOfertas;
+		try{
+		    File tempFile = new File(this.ficheroOfertas.getAbsolutePath() + ".tmp");
+		    BufferedReader br = new BufferedReader(new FileReader(this.ficheroOfertas));
+		    PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+		    String lista = this.recorreListaCandi(tOferta.getCandidatos());
+		    String line = null;
+		    while ((line = br.readLine()) != null) {
+		        if (!line.split(" ")[0].equals(tOferta.getId())) {
+		            pw.println(line);
+		            pw.flush();
+		        }else{
+		      	   if(actualizar){
+		      		   pw.println(tOferta.getId() + " " + tOferta.getTitulo() + " " + tOferta.getDescripcion()+ " " + 
+		      				 tOferta.getLocalizacion() + " " + tOferta.getOfertante() + " " +tOferta.getTrabajadorContratado()+" "+
+		      				   +tOferta.getPrecioAcordado()+" "+tOferta.getPagado()+lista);
+		      		   pw.flush();
+		      	   }
+		       }
+		    }
+		    pw.close();
+		    br.close();
+		    if (!File.delete()) {
+		        System.out.println("No se puede borrar el archivo.");
+		    }
+		    if (!tempFile.renameTo(File)){
+		        System.out.println("No se puede renombrar ela archivo.");
+		    }
+		}catch (FileNotFoundException ex) {
+		    ex.printStackTrace();
+		}catch (IOException ex) {
+		    ex.printStackTrace();
+		}
+	}
+	
+	
+	@Override
+	public TransferOferta obtenerOferta(String id){
+		TransferOferta tOferta = null;
+                File file = this.ficheroOfertas;
+		try{
+			FileReader archivo = new FileReader(file);
+			BufferedReader bf = new BufferedReader(archivo);
+			String mail = "";
+			String bfRead;
+			while(!(bfRead = bf.readLine()).equals(null)){
+				mail = bfRead.split(" ")[0];
+				if(mail.equals(id)){
+					tOferta = new TransferOferta(bfRead.split(" ")[0], bfRead.split(" ")[1], bfRead.split(" ")[2], bfRead.split(" ")[3],
+							bfRead.split(" ")[4],bfRead.split(" ")[5],bfRead.split(" ")[6],bfRead.split(" ")[7],bfRead.split(" ")[8]);
+					//bf.close();
+				}
 			}
-			
 			bf.close();
+		}catch(Exception e){
 		}
-		
-	}
-
-	public void guardar() throws IOException {
-		PrintWriter pw = new PrintWriter(new FileOutputStream(this.ficheroOfertas));
-		
-		for(String id : this.mapaOfertas.keySet()){
-			pw.write(this.mapaOfertas.get(id) + System.lineSeparator());
-		}
-		
-		pw.close();
+		return tOferta;
 	}
 	
-	@Override
-	public void insertarOferta(TransferOferta to){
-		if(this.mapaOfertas.get(to.getId()) == null)
-			this.guardarOfertaEnMapa(to);
-	}
-	
-	@Override
-	public void eliminarOferta(String idTransferOferta){
-		this.mapaOfertas.remove(idTransferOferta);
-	}
-	
-	@Override
-	public void modificarOferta(String idTransOf, TransferOferta reemplazo){
-		this.mapaOfertas.remove(idTransOf);
-		this.guardarOfertaEnMapa(reemplazo);
-	}
-	
-	@Override
-	public TransferOferta obtenerOferta(String idTransferOferta){
-		if(this.mapaOfertas.containsKey(idTransferOferta))
-			return this.cargarTransferOferta(this.mapaOfertas.get(idTransferOferta));
-		
-		return null;
-	}
-	
-	@Override
-	public List<TransferOferta> buscarOfertas(String textoBusqueda){
-		TransferOferta to;
-		List<TransferOferta> listaTo = new ArrayList<TransferOferta>();
-		
-		for(String id : this.mapaOfertas.keySet()){
-
-			to = this.cargarTransferOferta(this.mapaOfertas.get(id));
-			
-			if(to.getTitulo().contains(textoBusqueda) || to.getDescripcion().contains(textoBusqueda));
-				listaTo.add(to);
-		}
-		
-		return listaTo;
-	}
-	
-	private TransferOferta cargarTransferOferta(String textoTransferOferta){
-		int numDatosSeparados=9;
-		String[] DatOfSep;
-		String[] elemListaCandidatos;
-		List<String> listaCandidatos;
-		double prAcord;
-		boolean pagado;
-		
-		DatOfSep = textoTransferOferta.split(MyStringUtils.getCadenaSeparadora());
-		
-		if(DatOfSep.length != numDatosSeparados)
-			return null;
-		
-		listaCandidatos = new ArrayList<String>();
-		elemListaCandidatos = DatOfSep[5].split(MyStringUtils.getCadenaJuntarElementos());
-		
-		for(String s : elemListaCandidatos){
-			listaCandidatos.add(s);
-		}
-		
-		prAcord = Double.parseDouble(DatOfSep[6]);
-		pagado = Boolean.parseBoolean(DatOfSep[7]);
-		
-		return new TransferOferta(MyStringUtils.crearIdCompuesto(DatOfSep[0], DatOfSep[3]), DatOfSep[0], DatOfSep[1], DatOfSep[2], DatOfSep[3], DatOfSep[4], listaCandidatos, prAcord, pagado);
-	}
-	
-	private void guardarOfertaEnMapa(TransferOferta to){
-		Iterator<String> it;
-		String OfertaFormatoTexto="";
-		
-		OfertaFormatoTexto += to.getTitulo() + MyStringUtils.getCadenaSeparadora();
-		OfertaFormatoTexto += to.getDescripcion() + MyStringUtils.getCadenaSeparadora();
-		OfertaFormatoTexto += to.getLocalizacion() + MyStringUtils.getCadenaSeparadora();
-		OfertaFormatoTexto += to.getOfertante()+ MyStringUtils.getCadenaSeparadora();
-		OfertaFormatoTexto += to.getTrabajadorContratado() + MyStringUtils.getCadenaSeparadora();
-		
-		if(!to.getCandidatos().isEmpty()){
-			it = to.getCandidatos().iterator();
-			OfertaFormatoTexto += it.next();
-			
-			while(it.hasNext()){
-				OfertaFormatoTexto += MyStringUtils.getCadenaJuntarElementos() + it.next();
+	private String recorreListaCandi(List<String> listaCadiatos){
+		String cadena = "null";
+		for(int i = 0; i< listaCadiatos.size(); i++){
+			if(i < listaCadiatos.size() - 1){
+				cadena = cadena + listaCadiatos.get(i) + ";";
+			}else{
+				cadena = cadena + listaCadiatos.get(i);
 			}
 		}
-		OfertaFormatoTexto += MyStringUtils.getCadenaSeparadora();
-		
-		OfertaFormatoTexto += to.getPrecioAcordado() + MyStringUtils.getCadenaSeparadora();
-		OfertaFormatoTexto += to.getPagado() + MyStringUtils.getCadenaSeparadora();
-		
-		this.mapaOfertas.put(to.getId(), OfertaFormatoTexto);
+		return cadena;
 	}
-	
-	private boolean ficheroFuenteVacio() throws IOException{
-		boolean vacio;
-		BufferedReader bf;
-		
-		bf = new BufferedReader(new InputStreamReader(new FileInputStream(this.ficheroOfertas)));
-		
-		if(bf.readLine().isEmpty() && bf.readLine() == null)
-			vacio=true;
-		else
-			vacio=false;
-		
-		bf.close();
-		return vacio;
-		
-	}
+
 	
 }

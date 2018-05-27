@@ -23,21 +23,16 @@ public class Oferta {
 	public void registrar() {
             TransferOferta ofAux = this.dao.obtenerOferta(this.transOfer.getId());
             if(ofAux != null){
-            	this.dao.insertarOferta(this.transOfer);
+            	this.dao.guardarOferta(this.transOfer);
             }
 	}
 	
 	public void eliminar() {
-		this.dao.eliminarOferta(this.transOfer.getId());
+		this.dao.modificarOferta(this.transOfer, false);
 	}
 	
 	public void modificar(TransferOferta to){
-		String idAntiguo;
-		
-		idAntiguo = this.transOfer.getId();
-		this.transOfer = to;
-		this.dao.modificarOferta(idAntiguo, this.transOfer);
-		
+		this.dao.modificarOferta(this.transOfer, true);
 	}
 	
 	public void contratarTrabajador(String trabajador) {
@@ -49,31 +44,30 @@ public class Oferta {
 			this.transOfer.getCandidatos().remove(trabajador);
 			this.transOfer.setTrabajadorContratado(trabajador);
 			
-			this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
+			this.dao.modificarOferta(this.transOfer, true);
 		}
 			
 	}
 	
 	public void agregarCandidato(String candidato) {
 		this.transOfer.getCandidatos().add(candidato);
-		this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
+		this.dao.modificarOferta(this.transOfer, true);
 	}
 	
 	public void eliminarCandidato(String candidato) {
 		this.transOfer.getCandidatos().remove(candidato);
-		this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
+		this.dao.modificarOferta(this.transOfer, true);
 	}
 
 	public void eliminarTrabajador(){
 		this.transOfer.setTrabajadorContratado(null);
-		this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
+		this.dao.modificarOferta(this.transOfer, true);
 	}
 	
 	public void pagarAlTrabajador() {
 		if(this.seHaAcordadoPrecio())
 			this.transOfer.setPagado(true);
-		
-		this.dao.modificarOferta(this.transOfer.getId(), this.transOfer);
+		this.dao.modificarOferta(this.transOfer, true);
 	}
 	
 	private boolean seHaAcordadoPrecio(){
