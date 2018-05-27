@@ -35,7 +35,7 @@ public class Controlador {
 
 	public void actionPerformed(ActionEvent evento){
            String comando = evento.getActionCommand();
-            if(comando.equals("Iniciar Sesión")){
+            if(comando.equals("Iniciar Sesion")){
                 login();
             }else if(comando.equals("Crear Cuenta")){
                 this.registro = new interfazRegistro(this);
@@ -75,9 +75,9 @@ public class Controlador {
         }
 	
 	public void CrearOferta(){
-            String codigo = usuario+eOferta.getNombreOferta();
+            /*String codigo = usuario+eOferta.getNombreOferta();
 		this.servicioAplicacion.crearOferta( codigo, eOferta.getNombreOferta(), eOferta.getDescripcion(), "madrid", this.usuario,
-                                                    "", null, 10.00, false);
+                                                    "", null, 10.00, false);*/
 	}
 	
 	public void userButtonBorrarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
