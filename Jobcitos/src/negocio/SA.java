@@ -46,9 +46,11 @@ public class SA {
 		//oferta.eliminarTrabajador();//solo va a haber un trabajador asi que no hace falta pasar el trabajador
 	}
 	
-	public void contratarTrabajador(TransferOferta tOferta,TransferUsuario tUser){
-		//Oferta oferta = new Oferta(tOferta);
-		//oferta.contratarTrabajador(tUser.getId());
+	public void contratarTrabajador(String id, String tit, String desc,String loc, String of, String trab, List<String> cand,
+			double prAc, boolean p, String idTrabajador) {
+		Oferta oferta = new Oferta( id, tit,desc, loc,  of,  trab,cand, prAc,p);
+		oferta.contratarTrabajador(idTrabajador);
+
 	}
 	
 
