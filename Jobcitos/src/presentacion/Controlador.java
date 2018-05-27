@@ -35,7 +35,7 @@ public class Controlador {
 
 	public void actionPerformed(ActionEvent evento){
            String comando = evento.getActionCommand();
-            if(comando.equals("Iniciar Sesi¨®n")){
+            if(comando.equals("Iniciar Sesion")){
                 login();
             }else if(comando.equals("Crear Cuenta")){
                 this.registro = new interfazRegistro(this);
