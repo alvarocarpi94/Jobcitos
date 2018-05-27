@@ -57,11 +57,7 @@ public class Controlador {
 	}
 	
 	public void creaOfertaAction(ActionEvent evento){	
-			CrearOferta();
-	}
-	public void actionContratar(ActionEvent evento){
-
-		userButtonContratarTrabajador("Nombre oferta", usuario, usuario, usuario, usuario, null, 0, false, usuario);
+			//CrearOferta();
 	}
 	
         public void login(){
@@ -83,14 +79,14 @@ public class Controlador {
             }
         }
 	
-	public void CrearOferta(){
+	/*public void CrearOferta(){
         String codigo =this.usuario + eOferta.nombreOferta;
 		this.servicioAplicacion.crearOferta( codigo, eOferta.nombreOferta, eOferta.descr, "madrid",this.usuario,
                                                     "", null, eOferta.precio, false);
        this.oferta = new interfazOferta(this);
        this.principal.setVisible(true);
        // this.eOferta.setVisible(false);
-	}
+	}*/
 	
 	public void userButtonBorrarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
 		this.servicioAplicacion.borrarOferta(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p));
@@ -109,9 +105,7 @@ public class Controlador {
 	}
 	
 	public void userButtonContratarTrabajador(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p, String idTrabajador) {
-		String id = MyStringUtils.crearIdCompuesto(of, tit);
-		
-		this.servicioAplicacion.contratarTrabajador(id, tit, desc, loc, of, trab, cand, prAc, p, this.usuario);
+		//this.servicioAplicacion.contratarTrabajador(new TransferOferta(MyStringUtils.crearIdCompuesto(of, tit), tit, desc, loc, of, trab, cand, prAc, p), idTrabajador);
 	}
 	
 	public void userActionEditarOferta(String idAntiguo, String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p){

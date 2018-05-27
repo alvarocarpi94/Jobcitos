@@ -43,10 +43,10 @@ public class interfazPerfil extends javax.swing.JFrame {
 
         foto = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
-        ciudad = new javax.swing.JLabel();
         oferta = new javax.swing.JButton();
         log = new javax.swing.JButton();
         crear = new javax.swing.JButton();
+        candidatos = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         misofertas = new javax.swing.JButton();
         historial = new javax.swing.JButton();
@@ -54,8 +54,11 @@ public class interfazPerfil extends javax.swing.JFrame {
         chat = new javax.swing.JButton();
         perfil2 = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
         principal = new javax.swing.JButton();
         perfil = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JLabel();
         nombreoferta = new javax.swing.JLabel();
         editar = new javax.swing.JButton();
@@ -79,10 +82,6 @@ public class interfazPerfil extends javax.swing.JFrame {
         nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nombre.setText("NOMBRE OFERTANTE");
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
-
-        ciudad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ciudad.setText("CIUDAD");
-        getContentPane().add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         oferta.setBackground(new java.awt.Color(0, 204, 0));
         oferta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -112,6 +111,17 @@ public class interfazPerfil extends javax.swing.JFrame {
             }
         });
         getContentPane().add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
+
+        candidatos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        candidatos.setForeground(new java.awt.Color(0, 0, 204));
+        candidatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/trabajador.png"))); // NOI18N
+        candidatos.setContentAreaFilled(false);
+        candidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //candidatosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(candidatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 40, 30));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,6 +187,10 @@ public class interfazPerfil extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 100, 10));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/pago.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 40, 30));
+
         principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/tie.png"))); // NOI18N
         principal.setContentAreaFilled(false);
         principal.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +203,16 @@ public class interfazPerfil extends javax.swing.JFrame {
         perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/no_profile.png"))); // NOI18N
         perfil.setContentAreaFilled(false);
         getContentPane().add(perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setText("Candidatos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel2.setText("Pagar");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
 
         menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/fondo1.png"))); // NOI18N
         getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 350, 62));
@@ -205,7 +229,7 @@ public class interfazPerfil extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 40, 30));
 
         trabajador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/grupo.png"))); // NOI18N
         trabajador.setContentAreaFilled(false);
@@ -214,7 +238,7 @@ public class interfazPerfil extends javax.swing.JFrame {
                 trabajadorActionPerformed(evt);
             }
         });
-        getContentPane().add(trabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+        getContentPane().add(trabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 40, 30));
 
         cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/cancel.png"))); // NOI18N
         cerrar.setContentAreaFilled(false);
@@ -223,22 +247,22 @@ public class interfazPerfil extends javax.swing.JFrame {
                 cerrarActionPerformed(evt);
             }
         });
-        getContentPane().add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
+        getContentPane().add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 40, 30));
 
         editar2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         editar2.setForeground(new java.awt.Color(0, 153, 0));
         editar2.setText("Editar");
-        getContentPane().add(editar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, -1, -1));
+        getContentPane().add(editar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
         trabajador2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         trabajador2.setForeground(new java.awt.Color(0, 0, 204));
         trabajador2.setText("Trabajadores");
-        getContentPane().add(trabajador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+        getContentPane().add(trabajador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         cerrar2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cerrar2.setForeground(new java.awt.Color(255, 0, 0));
         cerrar2.setText("Cerrar");
-        getContentPane().add(cerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
+        getContentPane().add(cerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/fondo.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 480));
@@ -320,16 +344,19 @@ public class interfazPerfil extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton candidatos;
     private javax.swing.JButton cerrar;
     private javax.swing.JLabel cerrar2;
     private javax.swing.JButton chat;
-    private javax.swing.JLabel ciudad;
     private javax.swing.JButton crear;
     private javax.swing.JButton editar;
     private javax.swing.JLabel editar2;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel foto;
     private javax.swing.JButton historial;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton log;
