@@ -1,0 +1,3 @@
+Trabajos manuales/Se necesita a alguien experto en arreglar muebles rotos/Taller/nick@hotmail.com/Correa/alumno@ucm.es/500.0/true/
+Servicios de mudanza/El proximo lunes nos mudamos a Nueva York. Necesitamos mano de obra para el transporte de nuestras pertenencias/Barcelona/nombre@gmail.com/anonimo@gmail.com/nick@hotmail.com;alumno@ucm.es/1000.0/true/
+Oferta especial/Gana 10 euros paseando a mi perro/Madrid/anonimo@gmail.com/nombre@gmail.com/nombre@gmail.com;nick@hotmail.com;alumno@ucm.es/10.0/false/
