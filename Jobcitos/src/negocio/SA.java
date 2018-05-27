@@ -102,18 +102,18 @@ public class SA {
 	}
 	
 	public boolean crearCuenta(String email, String contrasenia, String Nombre, String Apellido){
-            if(!buscarUsuario(email, contrasenia)){    
-                Integer[] mediaOfertante = new Integer[2];
-		Integer[] mediaTrabajador = new Integer[2];
-		for(int i = 0; i < 2; i++){
-			mediaOfertante[i] = 0;
-			mediaTrabajador[i] = 0;
-		}
-                Usuario user = new Usuario(email, contrasenia, Nombre, Apellido, mediaOfertante, mediaTrabajador, "null");
-		user.crearCuenta();
-                return true;
-            }
-            return false;
+		if(!buscarUsuario(email, contrasenia)){    
+			Integer[] mediaOfertante = new Integer[2];
+            Integer[] mediaTrabajador = new Integer[2];
+            for(int i = 0; i < 2; i++){
+            	mediaOfertante[i] = 0;
+                mediaTrabajador[i] = 0;
+            }	
+            Usuario user = new Usuario(email, contrasenia, Nombre, Apellido, mediaOfertante, mediaTrabajador, "null");
+            user.crearCuenta();
+            return true;
+        }
+        return false;
 	}
 	
         public boolean buscarUsuario(String email, String contrasenia){
