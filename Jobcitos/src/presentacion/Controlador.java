@@ -35,7 +35,7 @@ public class Controlador {
 
 	public void actionPerformed(ActionEvent evento){
            String comando = evento.getActionCommand();
-            if(comando.equals("Iniciar Sesion")){
+            if(comando.equals("Iniciar Sesi¨®n")){
                 login();
             }else if(comando.equals("Crear Cuenta")){
                 this.registro = new interfazRegistro(this);
@@ -51,9 +51,13 @@ public class Controlador {
                 this.eOferta.setVisible(true);
                 this.principal.setVisible(false);
             }else if(comando.equals("confirmar")){
-                CrearOferta();
+              //  CrearOferta();
             }
             
+	}
+	
+	public void creaOfertaAction(ActionEvent evento){	
+			CrearOferta();
 	}
 	
         public void login(){
@@ -71,13 +75,17 @@ public class Controlador {
                 this.principal = new interfazPrincipal(this);
                 this.principal.setVisible(true);
                 this.registro.setVisible(false);
+  
             }
         }
 	
 	public void CrearOferta(){
-            /*String codigo = usuario+eOferta.getNombreOferta();
-		this.servicioAplicacion.crearOferta( codigo, eOferta.getNombreOferta(), eOferta.getDescripcion(), "madrid", this.usuario,
-                                                    "", null, 10.00, false);*/
+        String codigo =this.usuario + eOferta.nombreOferta;
+		this.servicioAplicacion.crearOferta( codigo, eOferta.nombreOferta, eOferta.descr, "madrid",this.usuario,
+                                                    "", null, eOferta.precio, false);
+       this.oferta = new interfazOferta(this);
+       this.principal.setVisible(true);
+       // this.eOferta.setVisible(false);
 	}
 	
 	public void userButtonBorrarOferta(String tit, String desc, String loc, String of, String trab, List<String> cand, double prAc, boolean p) {
